@@ -1,0 +1,50 @@
+RESTRICCIONES — VERMOUTH PEDRO Y MATEO
+Editable a mano · Sin skill · 40 reglas (20 verbales + 20 visuales)
+Generado por Ana Labs — 2026-05-25
+Fuentes: ficha_marca_pedro_y_mateo respuestas (Eduardo Sarrio, mayo 2026)
+
+═══ VERBALES ═══ qué nunca decir
+
+  - Nunca decir "el mejor", "único", "excepcional", "increíble", "inigualable"
+  - Nunca decir "experiencia premium" o "experiencia gourmet"
+  - Nunca decir "para los que saben" o "para entendidos"
+  - Nunca usar "lujo", "exclusivo", "sofisticado", "élite"
+  - Nunca decir "tradición italiana" o "al estilo europeo"
+  - Nunca decir "edición limitada"
+  - Nunca decir "descubrí", "atrevete", "viví", "sentí" como llamados a la acción
+  - Nunca usar "última oportunidad", "solo hoy", "no te lo pierdas"
+  - Nunca mencionar competidores por nombre (Carpano, Cinzano, Gancia, Martini)
+  - Nunca hablar mal de ningún otro producto, ni siquiera por contraste
+  - Nunca decir "hecho con amor" o variantes
+  - Nunca usar frases con "sabor" + adjetivo grandilocuente
+  - Nunca prometer beneficios funcionales (relajar, festejar, conectar, vincular)
+  - Nunca usar emojis excesivos o decorativos
+  - Nunca incluir cifras de ventas, ranking o posición de mercado
+  - Nunca tratar de usted al lector
+  - Nunca usar acentuación estridente (signos de exclamación múltiples, mayúsculas sostenidas)
+  - Nunca decir "vermouth artesanal" sin sustento (palabra gastada)
+  - Nunca decir "el primer", "el original" o "el verdadero" de algo
+  - Nunca terminar un copy con signo de exclamación
+
+═══ VISUALES ═══ qué nunca mostrar
+
+  - Nunca fondo blanco plano para piezas hero
+  - Nunca paleta de vermouth europeo (rojos saturados, dorados excesivos, terciopelo)
+  - Nunca personas brindando con copas alzadas en cliché publicitario
+  - Nunca grupos numerosos festejando como comercial de cerveza masiva
+  - Nunca mesas plásticas, manteles blancos de catering, ambientes asépticos
+  - Nunca iluminación fría o de estudio
+  - Nunca primeros planos extremos de boca o lengua probando
+  - Nunca jóvenes menores de 25 años en escena (target real es 30+)
+  - Nunca bandera argentina como elemento gráfico central
+  - Nunca camisetas de fútbol con escudo de AFA o logos oficiales
+  - Nunca logos de FIFA, AFA, Conmebol o marcas del Mundial
+  - Nunca jugadores reales ni imágenes de partidos
+  - Nunca botella sola sobre fondo blanco como pieza principal
+  - Nunca composiciones simétricas centradas tipo "foto de producto" de e-commerce
+  - Nunca tipografía con efectos (sombras, gradientes, contornos)
+  - Nunca emojis o iconografía decorativa sobre la imagen
+  - Nunca tipografía superpuesta que tape elementos clave (etiqueta, medalla)
+  - Nunca cócteles con sombrillas, decoración exagerada o estética tropical
+  - Nunca aplicar filtros saturados o efectos vintage forzados
+  - Nunca imágenes generadas por IA con manos extrañas, copas distorsionadas o caras genéricas
