@@ -39,14 +39,46 @@ const aestheticRegisters = [
   "anatomy-heat-overlay",
 ];
 
-const aestheticPatternCandidates = [
-  "#35 object-as-other-minimalist",
-  "#36 page-curl-reveal",
-  "#37 hand-through-symbol",
-  "#38 eye-as-micro-portal",
-  "#39 type-treatment-imperfecto",
-  "#40 product-monumentality-lifestyle-wide-angle",
-  "#41 scribble-overlay-portrait",
+const aestheticPatternDetails = [
+  {
+    name: "#35 object-as-other-minimalist",
+    body: "Un objeto deviene otro sobre fondo plano. Mucho aire, una metáfora pura y cero decoración sobrante.",
+  },
+  {
+    name: "#36 page-curl-reveal",
+    body: "Una capa de papel se levanta o rasga para revelar otro mundo: destino, escena o promesa visual.",
+  },
+  {
+    name: "#37 hand-through-symbol",
+    body: "Un símbolo plano de marca funciona como portal y una mano real aparece con el producto o acción.",
+  },
+  {
+    name: "#38 eye-as-micro-portal",
+    body: "Una escena miniatura aparece dentro de un iris, vidrio, agua o superficie reflectante.",
+  },
+  {
+    name: "#39 type-treatment-imperfecto",
+    body: "Composición type-first con subrayados manuales, pesos mixtos y un tratamiento tipográfico expresivo.",
+  },
+  {
+    name: "#40 product-monumentality-lifestyle-wide-angle",
+    body: "Producto gigante en primer plano, cámara baja y una escena humana natural detrás.",
+  },
+  {
+    name: "#41 scribble-overlay-portrait",
+    body: "Retrato lifestyle con flechas, círculos y palabras manuscritas estilo UGC cuidado.",
+  },
+];
+
+const aestheticRegisterDetails = [
+  ["metafora-minimalista-solitaria", "65-80% de espacio negativo, fondo plano, 1-2 capas, sin partículas ni scatter."],
+  ["editorial-monumental", "Tipografía grande, escala institucional, silueta o producto con presencia fuerte."],
+  ["ugc-scribble", "Foto cotidiana, anotaciones manuales y tono de testimonio real, no estudio corporativo."],
+  ["brand-dominant-flat", "Color primario de marca domina 60-80% del canvas con contraste fuerte."],
+  ["cinematic-direccional", "Luz direccional, rim light, clima fotográfico y profundidad dramática controlada."],
+  ["portal-organico", "Sujeto mirando o entrando a una apertura luminosa: transición, descubrimiento, futuro."],
+  ["split-frame-arc", "Repetición de sujeto sobre arco geométrico, usualmente monocroma y premium."],
+  ["anatomy-heat-overlay", "Visualización clínica: mapa de calor, ondas concéntricas y sujeto fotográfico real."],
 ];
 
 export default async function CoverPage({
@@ -449,8 +481,8 @@ function CoverSkillDrawer({ brand, piece }: { brand: Brand; piece: CreativePiece
 
       <div className="grid grid-cols-3 border-b border-line text-center">
         <div className="mono bg-paper px-2 py-3 text-[10px] uppercase">Skill</div>
-        <div className="mono px-2 py-3 text-[10px] uppercase text-muted">Pipeline</div>
-        <div className="mono px-2 py-3 text-[10px] uppercase text-muted">Output</div>
+        <div className="mono px-2 py-3 text-[10px] uppercase text-muted">Aesthetic-refinements</div>
+        <div className="mono px-2 py-3 text-[10px] uppercase text-muted">Baseline-v8</div>
       </div>
 
       <div className="space-y-6 p-4">
@@ -490,6 +522,16 @@ function CoverSkillDrawer({ brand, piece }: { brand: Brand; piece: CreativePiece
         <section>
           <div className="eyebrow mb-3">Eje estético</div>
           <div className="space-y-3">
+            <div className="border-l-2 border-line pl-3 text-sm leading-6 text-ink-soft">
+              <p>
+                <strong>SCOPE:</strong> este catálogo es cover 3:4 only. Opera como dimensión opcional ortogonal:
+                intención, motor, patrón, estrategia comunicacional y registro estético se componen sin reemplazarse.
+              </p>
+              <p className="mt-3">
+                El patrón decide dónde van los elementos. El registro decide cómo se sienten: minimalista, monumental,
+                UGC, cinematic, portal, flat brand o visualización clínica.
+              </p>
+            </div>
             <div className="border border-line bg-paper p-3">
               <div className="mono text-[10px] uppercase text-muted">Registro actual</div>
               <div className="mt-1 text-sm font-medium">{currentAesthetic.label}</div>
@@ -512,10 +554,22 @@ function CoverSkillDrawer({ brand, piece }: { brand: Brand; piece: CreativePiece
             </div>
             <div>
               <div className="mono mb-2 text-[10px] uppercase text-muted">Patrones candidatos #35-#41</div>
-              <div className="space-y-1 text-xs text-ink-soft">
-                {aestheticPatternCandidates.map((pattern) => (
-                  <div key={pattern} className="border-b border-line pb-1 last:border-b-0">
-                    {pattern}
+              <div className="space-y-2 text-xs text-ink-soft">
+                {aestheticPatternDetails.map((pattern) => (
+                  <div key={pattern.name} className="border border-line bg-paper p-2">
+                    <div className="mono mb-1 text-[10px] uppercase text-ink">{pattern.name}</div>
+                    <div>{pattern.body}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="mono mb-2 text-[10px] uppercase text-muted">Reglas por registro</div>
+              <div className="space-y-2">
+                {aestheticRegisterDetails.map(([name, body]) => (
+                  <div key={name} className="grid grid-cols-[120px_1fr] gap-3 border-b border-line pb-2 text-xs last:border-b-0">
+                    <div className="mono text-[9px] uppercase text-ink">{name}</div>
+                    <div className="text-ink-soft">{body}</div>
                   </div>
                 ))}
               </div>
