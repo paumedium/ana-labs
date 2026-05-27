@@ -423,6 +423,15 @@ function DetailsPanel({ brand, piece, showSkill }: { brand: Brand; piece: Creati
           <dd>{piece.visualCue}</dd>
         </dl>
 
+        <div className="mt-5 grid grid-cols-2 gap-2">
+          {coverRunMetrics(piece).map((metric) => (
+            <div key={metric.label} className="border border-line bg-paper p-3">
+              <div className="mono text-[9px] uppercase text-muted">{metric.label}</div>
+              <div className="mt-1 text-sm font-semibold">{metric.value}</div>
+            </div>
+          ))}
+        </div>
+
         <div className={`mt-5 border p-3 text-xs ${isObserved ? "border-[var(--amber)] bg-[#FFF7DE]" : "border-line bg-paper"}`}>
           <div className="eyebrow mb-2">Observación</div>
           {isObserved ? "Falta validar punto de venta real antes de cerrar el CTA." : "Sin observaciones abiertas."}
@@ -726,13 +735,46 @@ function buildCoverPipeline(piece: CreativePiece) {
   return [
     { title: "Idea", body: piece.pipeline[0]?.body ?? piece.title },
     { title: "Lectura marca", body: "Ficha 12D: tono, CTAs, restricciones, oferta y buyer persona." },
-    { title: "Anchor", body: anchorFor(piece) },
-    { title: "Textos", body: `${piece.headline} / ${piece.subhead} / CTA: ${ctaFor(piece)}` },
-    { title: "Sistema visual", body: `${patternFor(piece)} + paleta ${piece.palette} + margen libre.` },
-    { title: "Registro estético", body: aestheticFor(piece).body },
-    { title: "Prompt 6 bloques", body: "Artifact, Exact Text, Layout, Visual System, Details, Constraints." },
-    { title: "Moderación", body: "Sin datos inventados, sin marcas externas y con acentos preservados." },
+    { title: "2.b Anchor", body: anchorFor(piece) },
+    { title: "2.c Assets de marca", body: `Visual: ${piece.visualCue}. Registro: ${aestheticFor(piece).label}.` },
+    { title: "2.d Imágenes referencia", body: "Modo t2i mientras no haya assets visuales reales y logo en alta cargados." },
+    { title: "3 Anti-duplicado", body: "Chequea covers previas con mismo anchor antes de crear otra variante." },
+    { title: "4 Textos baked-in", body: `Headline ${wordCount(piece.headline)} palabras · subhead ${wordCount(piece.subhead)} · CTA ${wordCount(ctaFor(piece))}.` },
+    { title: "4.b Copy redes", body: `${lineCount(piece.caption)} líneas · ${wordCount([piece.copy, piece.caption].join(" "))} palabras aproximadas.` },
+    { title: "5 Patrón visual", body: patternFor(piece) },
+    { title: "5.b Paleta", body: `Base ${piece.palette} · acento controlado · blanco o papel para contraste.` },
+    { title: "5.c Cluster scale", body: `${aestheticFor(piece).slug === "metafora-minimalista-solitaria" ? "compact 35-45%" : "regular 50-65%"} · margen respirado.` },
+    { title: "6 Contact strip", body: contactStripFor(piece) },
+    { title: "7 Prompt", body: "6 bloques: Artifact, Exact Text, Layout, Visual System, Details, Constraints." },
+    { title: "8 Moderación", body: "Restricciones de marca, datos factuales, acentos y marcas externas." },
+    { title: "10 Render", body: "gpt-image-2 medium · 1104x1472 · costo estimado USD 0.08." },
+    { title: "10.b Composite logo", body: "Logo aplicado post-render cuando exista variante limpia en assets." },
+    { title: "11 Revisión humana", body: piece.status === "aprobado" ? "Aprobado." : "Pendiente de revisión o publicación." },
   ];
+}
+
+function coverRunMetrics(piece: CreativePiece) {
+  const promptChars = piece.kind === "cover" ? "12K" : "4K";
+  return [
+    { label: "Estado", value: piece.status },
+    { label: "Engine", value: piece.kind === "cover" ? "gpt-image-2" : "manual" },
+    { label: "Prompt", value: promptChars },
+    { label: "Costo est.", value: piece.kind === "cover" ? "USD 0.08" : "-" },
+  ];
+}
+
+function wordCount(value: string) {
+  return value.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function lineCount(value: string) {
+  return Math.max(1, value.split(/\n+/).filter(Boolean).length);
+}
+
+function contactStripFor(piece: CreativePiece) {
+  if (piece.format === "Story 9:16") return "web-only o CTA mínimo para no saturar story.";
+  if (piece.tags.includes("B2B")) return "WhatsApp + email comercial, sin iconos decorativos.";
+  return "Instagram + WhatsApp + marca visible en footer reducido.";
 }
 
 function anchorFor(piece: CreativePiece) {
