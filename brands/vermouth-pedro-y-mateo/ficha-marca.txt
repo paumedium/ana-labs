@@ -1,6 +1,6 @@
 FICHA DE MARCA INTEGRAL — VERMOUTH PEDRO Y MATEO
 Pedro y Mateo. El antes.
-12 dimensiones — Generado por Ana Labs — 2026-05-25
+12 dimensiones — Generado por NORA — 2026-05-25
 Fuentes: ficha_marca_pedro_y_mateo respuestas (Eduardo Sarrio, mayo 2026), estrategia de crecimiento por anillos concéntricos (Casa Sarria, 2026), Instagram @vermouthpedroymateo
 
 ═══════════════════════════════════════
@@ -38,7 +38,7 @@ Definición: Vermouth Torino Rosso premium artesanal hecho en Pergamino, con 49 
 
 Propuesta de valor: "Pedro y Mateo es el vermouth del antes — del rato que separa la rutina de lo que importa. Hecho como se hacía antes, con paciencia."
 
-Propuesta por uso / momento:
+Propuesta por unidad:
   - Previa de partido: el rato antes del fútbol. Hielera, pomelo, picada, mesa puesta. La cerveza llega después.
   - Aperitivo de noche en casa: antes de que llegue la gente a comer. La copa que se sirve mientras se termina de armar la mesa.
   - Sobremesa larga del domingo: cuando ya se comió, queda café, pero la conversación pide otra cosa. Pedro y Mateo solo, con hielo grande.
@@ -58,12 +58,18 @@ Claims secundarios:
   - "Algunas elecciones no se hacen, se confirman." (piezas institucionales Casa Sarria)
 
 Posición competitiva:
-  vs vermouths industriales (Cinzano / Gancia / Martini): producto artesanal premiado con identidad territorial real.
-  vs importados premium (Carpano / Antica Formula / Punt e Mes): precio justo argentino con doble medalla nacional.
-  vs otros vermouths argentinos artesanales: capacidad medida + respaldo Casa Sarria (10 años Session Beer) + doble medalla.
+                 Identidad territorial alta
+                         ↑
+         Pedro y Mateo   │   Vermouths argentinos curados
+                         │
+Producto de método  ←────┼────→ Producto de moda
+                         │
+   Industriales masivos  │   Importados premium
+                         ↓
+                 Identidad territorial baja
 
 ═══════════════════════════════════════
-4. ARQUITECTURA DE MARCA
+4. ARQUITECTURA DE MARCA (Opcional)
 ═══════════════════════════════════════
 Estructura: marca paraguas Casa Sarria con 3 marcas / líneas de producto. Una misma manera de hacer las cosas, tres categorías de bebida.
 
@@ -183,7 +189,7 @@ De producto / oferta:
   - Pertenencia al portafolio Casa Sarria, junto con Session Beer (cerveza, 10 años) y Granero Sur (whisky, lanzamiento julio 2026)
 
 ═══════════════════════════════════════
-7. COBERTURA Y OPERACIÓN
+7. COBERTURA Y OPERACIÓN (Opcional)
 ═══════════════════════════════════════
 Planta y depósito principal — Marcelino Ugarte 1122, Pergamino, Provincia de Buenos Aires, Argentina
 
@@ -197,31 +203,22 @@ Distribuidores: distribución directa por equipo Casa Sarria, sin distribuidores
 ═══════════════════════════════════════
 8. OFERTA COMERCIAL
 ═══════════════════════════════════════
-Producto único: Vermouth Pedro y Mateo Torino Rosso
+Servicios:
+  - Vermouth Pedro y Mateo Torino Rosso: botella única de 700 cm³. Sin estuche, sin packs especiales. Presentación regular constante.
+    Condiciones: PVP sugerido $10.500 por botella; precio mayorista $8.000 por botella para bar y vinoteca; transferencia o efectivo; pago dentro de 30 días; descuentos por volumen a evaluar caso por caso (precio referencial 2026 — verificar vigencia).
+    Normativa: venta exclusiva a mayores de 18 años; normativa comercial/bromatológica específica pendiente validar con cliente.
+    Tarifa: $10.500 PVP / $8.000 mayorista por botella de 700 cm³ (precio referencial 2026 — verificar vigencia).
+  - Prueba sin riesgo para bares nuevos del Anillo 1: primera caja a consignación con retiro sin cargo si el producto no rota.
+    Condiciones: retiro garantizado a los 60 días si no hay rotación; aplica a bares nuevos del Anillo 1; requiere validación comercial caso por caso.
 
-Presentación: Botella única de 700 cm³. Sin estuche, sin packs especiales. Presentación regular constante.
-
-Tarifa:
-  - PVP (precio sugerido al público): $10.500 por botella (referencial mayo 2026 — verificar vigencia)
-  - Precio mayorista (bar y vinoteca): $8.000 por botella, mismo precio para ambos canales
-  - Diferencial PVP vs mayorista: $2.500 por unidad (margen aproximado 31% para el canal)
-  - Estructura simple: sin escalas por volumen ni precios distintos por canal
-
-Condiciones comerciales:
-  Plazo de pago: 30 días o contra factura dentro de los 30 días desde la entrega
-  Formas de pago aceptadas: transferencia o efectivo
-  Descuento por volumen: a evaluar caso por caso según escala del cliente
-
-Política de devolución / cambio:
-  - Bares nuevos del Anillo 1: primera caja a consignación con compromiso de retiro sin cargo si el producto no rota en 60 días (corazón de la propuesta comercial de entrada — riesgo del bar = cero)
-  - Botellas con defecto o rotura en entrega: reposición sin cargo previa verificación
-
-Procedimientos de compra:
+Procedimientos:
   - Cliente final: en vinotecas premium de Pergamino y radio (presencial). Pedidos puntuales por WhatsApp +54 9 2477 329612.
   - Bares y vinotecas (B2B): contacto directo por WhatsApp comercial. Visita personal de Casa Sarria con kit comercial completo.
 
+Marcas representadas: Casa Sarria — Session Beer, Pedro y Mateo, Granero Sur.
+
 ═══════════════════════════════════════
-9. CIFRAS CLAVE
+9. CIFRAS CLAVE (Opcional)
 ═══════════════════════════════════════
   - Producción actual: 100 botellas/mes con capacidad ociosa
   - Plan Anillo 1 (jun-sep 2026): 180-200 botellas/mes sostenidas
@@ -235,30 +232,26 @@ Procedimientos de compra:
 ═══════════════════════════════════════
 10. CANALES Y ACTIVOS DIGITALES
 ═══════════════════════════════════════
-Operación digital deliberadamente mínima — decisión estratégica alineada con tono editorial sereno de la marca.
+Presencia digital:
+  Teléfono: +54 9 2477 329612
+  WhatsApp: +54 9 2477 329612
+  Instagram: @vermouthpedroymateo
+  Facebook: No aplica — presencia digital concentrada en Instagram.
+  Web: (Información pendiente — Casa Sarria opera sin sitio web por el momento. Comunicación digital concentrada en Instagram + WhatsApp)
+  Tienda online: No aplica — comercialización exclusiva por canal físico y pedidos puntuales por WhatsApp.
+  Portal clientes: No aplica.
 
-Sitio web: (Información pendiente — Casa Sarria opera sin sitio web por el momento. Comunicación digital concentrada en Instagram + WhatsApp)
-
-Email comercial: No aplica — gestión integral por WhatsApp.
-
-Teléfono / WhatsApp comercial: +54 9 2477 329612 — canal principal de contacto comercial. Coordinación de pedidos con bares y vinotecas + atención a cliente final.
-
-Instagram Pedro y Mateo: @vermouthpedroymateo
-  URL: instagram.com/vermouthpedroymateo
-  Eje narrativo: el ritual del antes, la maceración (49 días, 12 botánicos), la identidad pergaminense y la doble medalla como firma silenciosa.
-
-Instagram Casa Sarria (paraguas): (pendiente validar con cliente — confirmar si existe o si se crea próximamente)
-
-Otras redes (Facebook, TikTok, LinkedIn, YouTube, X): No aplica — presencia digital concentrada en Instagram.
-
-E-commerce / plataformas externas: No aplica — comercialización exclusiva por canal físico (vinotecas premium + canal HORECA en activación). Pedidos puntuales del cliente final por WhatsApp.
-
-CRM / herramientas internas: WhatsApp + planilla manual al día de hoy. Incorporación de CRM en agenda de mejoras a evaluar.
+Soporte y atención:
+  Email contacto: No aplica — gestión integral por WhatsApp.
+  Email especializado: No aplica.
+  Tiempo respuesta RRSS: (Información pendiente — requiere insumo del cliente)
+  Tiempo respuesta email: No aplica.
+  CRM/herramientas: WhatsApp + planilla manual al día de hoy. Incorporación de CRM en agenda de mejoras a evaluar.
 
 ═══════════════════════════════════════
 11. CTAs VALIDADOS
 ═══════════════════════════════════════
-Frases / títulos que funcionan (vocabulario validado, en orden de uso):
+Frases / títulos que funcionan:
   - "Pedro y Mateo. El antes."
   - "Hay rituales que tardan más en hacerse que en disfrutarse."
   - "49 días. 12 botánicos. Una receta que no se toca."
@@ -268,7 +261,7 @@ Frases / títulos que funcionan (vocabulario validado, en orden de uso):
   - "Doble medalla de plata. Dos años seguidos. Lo dijeron los catadores, no nosotros."
   - "Antes que el partido. Antes que la cena. Antes que el brindis."
 
-CTAs aprobados (tono: sugerencia, invitación, dato — nunca imperativo ni venta dura):
+CTAs validados:
   - "Pedilo en las vinotecas premium de Pergamino."
   - "Conseguilo donde sepan recomendarlo."
   - "Servilo con hielo grande y pomelo."
@@ -290,7 +283,7 @@ Frases descartadas (NUNCA usar):
 ═══════════════════════════════════════
 12. PERSONALIDAD, ARQUETIPO Y TONO
 ═══════════════════════════════════════
-Arquetipo Mark/Pearson principal: Sage (Sabio) — la marca habla desde el oficio acumulado, los datos concretos (49 días, 12 botánicos, dos medallas) y la validación externa, sin pose ni adornos.
+Arquetipo Mark/Pearson: Sage (Sabio)
 Justificación: Sage no busca convencer a gritos: muestra el método y deja que la prueba ciega de los catadores hable. Pedro y Mateo encarna ese arquetipo en su humildad pergaminense, su paciencia productiva y su confianza en la receta sin tocar.
 
 Arquetipo secundario: Everyman (Hombre Común) — la accesibilidad sin pretensión, la mesa común, el aperitivo del domingo.

@@ -286,7 +286,7 @@ export const brandDimensions: Record<string, BrandDimension[]> = {
       fields: [
         { label: "Instagram", value: "@vermouthpedroymateo" },
         { label: "WhatsApp", value: "+54 9 2477 329612" },
-        { label: "No aplica", value: "Sitio web, e-commerce, Facebook, TikTok, LinkedIn y YouTube activos para la marca." },
+        { label: "No aplica", value: "Sitio web, e-commerce, Facebook, TikTok, LinkedIn y YouTube no están activos para la marca; la operación digital se concentra en Instagram y WhatsApp." },
       ],
       pending: ["Confirmar si existirá Instagram paraguas de Casa Sarria."],
     },
