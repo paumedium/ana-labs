@@ -81,6 +81,29 @@ const aestheticRegisterDetails = [
   ["anatomy-heat-overlay", "Visualización clínica: mapa de calor, ondas concéntricas y sujeto fotográfico real."],
 ];
 
+const baselineConditionRows = [
+  ["para_revision", "110", "87%"],
+  ["observado", "8", "6%"],
+  ["para_publicar", "7", "6%"],
+  ["aprobado", "1", "1%"],
+];
+
+const baselineFamilyRows = [
+  ["E. Editorial/abstracta", "27", "21%", "sobre-usada"],
+  ["A. Tipografía", "23", "18%", "sobre-usada"],
+  ["C. Producto-protagonista", "21", "17%", "normal"],
+  ["B. Subject foto-realista", "21", "17%", "normal"],
+  ["F. Compuesta", "20", "16%", "normal"],
+  ["D. Screen/digital", "14", "11%", "sub-usada"],
+];
+
+const baselineSuccessMetrics = [
+  "Consistencia patrón número ↔ slug ≥98%.",
+  "Familia D con al menos 20 covers nuevos en 30 días.",
+  "Al menos 6 patrones nuevos invocados una vez.",
+  "Sin números de patrón fuera del catálogo final.",
+];
+
 export default async function CoverPage({
   params,
   searchParams,
@@ -577,6 +600,57 @@ function CoverSkillDrawer({ brand, piece }: { brand: Brand; piece: CreativePiece
           </div>
         </section>
 
+        <section>
+          <div className="eyebrow mb-3">Baseline v8</div>
+          <div className="space-y-4">
+            <div className="border-l-2 border-line pl-3 text-sm leading-6 text-ink-soft">
+              <p>
+                <strong>Snapshot pre-expansión.</strong> Fecha: 2026-05-10. Catálogo base: 31 patrones canónicos
+                en 6 familias, antes de expandir hacia 40+ patrones.
+              </p>
+              <p className="mt-3">
+                Sirve como punto de comparación: si la expansión baja consistencia, se puede volver al baseline
+                documentado sin perder el aprendizaje de motores, arquetipos y registros.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-3 gap-2 text-center">
+              <MetricCard label="Covers" value="126" />
+              <MetricCard label="Patrones" value="31" />
+              <MetricCard label="Mapeadas" value="67" />
+            </div>
+
+            <DataTable
+              title="Distribución por condición"
+              headers={["Condición", "Total", "%"]}
+              rows={baselineConditionRows}
+            />
+
+            <DataTable
+              title="Uso por familia"
+              headers={["Familia", "Covers", "%", "Lectura"]}
+              rows={baselineFamilyRows}
+            />
+
+            <div className="border border-[var(--amber)] bg-[#FFF7DE] p-3">
+              <div className="mono mb-2 text-[10px] uppercase text-[#755700]">Hallazgo crítico</div>
+              <p className="text-xs leading-5 text-ink-soft">
+                El 10% de covers tenía inconsistencia entre número de patrón y slug persistido. La regla nueva:
+                el generador debe copiar el slug canónico exacto del catálogo.
+              </p>
+            </div>
+
+            <div>
+              <div className="mono mb-2 text-[10px] uppercase text-muted">Métrica de éxito ajustada</div>
+              <div className="space-y-2 text-xs text-ink-soft">
+                {baselineSuccessMetrics.map((metric) => (
+                  <Rule key={metric}>{metric}</Rule>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="border border-line bg-paper p-3">
           <div className="eyebrow mb-2">Pieza actual</div>
           <div className="text-sm font-medium">#{piece.id} - {piece.title}</div>
@@ -584,6 +658,45 @@ function CoverSkillDrawer({ brand, piece }: { brand: Brand; piece: CreativePiece
         </section>
       </div>
     </aside>
+  );
+}
+
+function MetricCard({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="border border-line bg-paper p-3">
+      <div className="text-2xl font-semibold leading-none">{value}</div>
+      <div className="mono mt-1 text-[9px] uppercase text-muted">{label}</div>
+    </div>
+  );
+}
+
+function DataTable({ title, headers, rows }: { title: string; headers: string[]; rows: string[][] }) {
+  return (
+    <div>
+      <div className="mono mb-2 text-[10px] uppercase text-muted">{title}</div>
+      <div className="overflow-hidden border border-line">
+        <div className="grid bg-paper text-xs font-medium" style={{ gridTemplateColumns: `repeat(${headers.length}, minmax(0, 1fr))` }}>
+          {headers.map((header) => (
+            <div key={header} className="border-r border-line px-2 py-2 last:border-r-0">
+              {header}
+            </div>
+          ))}
+        </div>
+        {rows.map((row) => (
+          <div
+            key={row.join("-")}
+            className="grid border-t border-line text-xs text-ink-soft"
+            style={{ gridTemplateColumns: `repeat(${headers.length}, minmax(0, 1fr))` }}
+          >
+            {row.map((cell, index) => (
+              <div key={`${cell}-${index}`} className="border-r border-line px-2 py-2 last:border-r-0">
+                {index === 0 ? <span className="mono text-[9px] uppercase">{cell}</span> : cell}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
