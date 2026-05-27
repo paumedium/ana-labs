@@ -376,20 +376,20 @@ function SkillDrawer({ brandCode, selectedDim }: { brandCode: string; selectedDi
 
         <section>
           <div className="eyebrow mb-3">Dimensiones</div>
-          <ul className="space-y-1">
-            <li>01 Identidad corporativa</li>
-            <li>02 Propósito</li>
-            <li>03 Posicionamiento estratégico</li>
-            <li>04 Arquitectura de marca</li>
-            <li>05 Público objetivo + buyer personas</li>
-            <li>06 Diferenciadores</li>
-            <li>07 Cobertura y operación</li>
-            <li>08 Oferta comercial</li>
-            <li>09 Cifras clave</li>
-            <li>10 Canales y activos digitales</li>
-            <li>11 CTAs validados</li>
-            <li>12 Personalidad, arquetipo y tono</li>
-          </ul>
+          <div className="space-y-3">
+            {dimensionRules.map((rule) => (
+              <div key={rule.n} className="border border-line bg-paper p-3">
+                <div className="mb-1 flex items-center justify-between gap-2">
+                  <span className="mono text-[10px] uppercase">DIM-{rule.n}</span>
+                  <span className={`status-pill ${rule.required === "crítica" ? "status-pill-rev" : rule.required === "opcional" ? "status-pill-opt" : "status-pill-ok"}`}>
+                    {rule.required}
+                  </span>
+                </div>
+                <div className="text-sm font-semibold">{rule.title}</div>
+                <p className="mt-1 text-xs text-ink-soft">{rule.rule}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section>
@@ -440,3 +440,78 @@ function dimensionUsage(dim: string): { feeds: string; risk: string } {
 
   return usage[dim] ?? { feeds: "Contexto de marca", risk: "Validar con cliente" };
 }
+
+const dimensionRules = [
+  {
+    n: "01",
+    title: "Identidad corporativa",
+    required: "obligatoria",
+    rule: "Solo datos factuales verificables: razón social, fundación, sede, gerente, sector y alcance.",
+  },
+  {
+    n: "02",
+    title: "Propósito",
+    required: "obligatoria",
+    rule: "Misión, visión y valores con expresión concreta; si es propuesta, marcar pendiente de validación.",
+  },
+  {
+    n: "03",
+    title: "Posicionamiento estratégico",
+    required: "obligatoria",
+    rule: "Definir qué hace, a quién sirve, qué la diferencia y por qué importa; incluir claims y mapa de posición.",
+  },
+  {
+    n: "04",
+    title: "Arquitectura de marca",
+    required: "opcional",
+    rule: "Solo sub-marcas o unidades reales; si no existen, declarar marca única sin inventar estructura.",
+  },
+  {
+    n: "05",
+    title: "Público objetivo + buyer personas",
+    required: "crítica",
+    rule: "2-5 personas con perfil, dolor, anhelo, cambio emocional, diferenciador y objeciones accionables.",
+  },
+  {
+    n: "06",
+    title: "Diferenciadores",
+    required: "obligatoria",
+    rule: "Ventajas verificables agrupadas por operación, tecnología, servicio, producto o assets disponibles.",
+  },
+  {
+    n: "07",
+    title: "Cobertura y operación",
+    required: "opcional",
+    rule: "Sucursales, direcciones, teléfonos y horarios exactos; si no aplica, explicitar operación digital/remota.",
+  },
+  {
+    n: "08",
+    title: "Oferta comercial",
+    required: "obligatoria",
+    rule: "Servicios/productos con condiciones, restricciones, normativas, tarifas referenciales y procedimientos.",
+  },
+  {
+    n: "09",
+    title: "Cifras clave",
+    required: "opcional",
+    rule: "Métricas publicables con fuente y fecha; cifras antiguas se marcan como referenciales.",
+  },
+  {
+    n: "10",
+    title: "Canales y activos digitales",
+    required: "obligatoria",
+    rule: "Web, redes, WhatsApp, email, soporte y tiempos de respuesta; no activar canales inexistentes.",
+  },
+  {
+    n: "11",
+    title: "CTAs validados",
+    required: "obligatoria",
+    rule: "Banco de cierres permitidos para piezas; preservar CTAs anteriores si ya fueron validados.",
+  },
+  {
+    n: "12",
+    title: "Personalidad, arquetipo y tono",
+    required: "obligatoria",
+    rule: "Arquetipo Mark/Pearson, manifestación, voz, directivas, palabras clave y límites de generación.",
+  },
+] as const;
