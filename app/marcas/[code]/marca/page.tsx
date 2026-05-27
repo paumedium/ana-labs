@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getBrand, getBrandDimensions, type BrandDimension } from "@/lib/mock-data";
+import { getBrandFichaSections } from "@/lib/brand-ficha";
 import { SiteHeader } from "@/components/site-header";
 
 const categories = ["Identidad y propósito", "Mercado y público", "Diferenciación y operación", "Comercial y digital", "Expresión y voz"];
@@ -20,10 +21,12 @@ export default async function MarcaPage({
   if (!brand) notFound();
 
   const dims = getBrandDimensions(code);
+  const fichaSections = await getBrandFichaSections(brand.slug);
   const dimParam = Array.isArray(query.dim) ? query.dim[0] : query.dim;
   const skillParam = Array.isArray(query.skill) ? query.skill[0] : query.skill;
   const selectedIndex = Math.max(0, dims.findIndex((dim) => dim.n === dimParam));
   const selected = dims[selectedIndex] ?? dims[0];
+  const selectedFichaSection = fichaSections.find((section) => section.n === selected?.n);
   const completed = dims.filter((dim) => dim.status === "completa").length;
   const showSkill = skillParam === "1";
 
@@ -74,7 +77,16 @@ export default async function MarcaPage({
           </div>
         </section>
 
-        {selected && <DimensionDetail brandCode={brand.code} dim={selected} dims={dims} selectedIndex={selectedIndex} showSkill={showSkill} />}
+        {selected && (
+          <DimensionDetail
+            brandCode={brand.code}
+            dim={selected}
+            dims={dims}
+            selectedIndex={selectedIndex}
+            showSkill={showSkill}
+            fichaBody={selectedFichaSection?.body}
+          />
+        )}
       </main>
       {showSkill && <SkillDrawer brandCode={brand.code} selectedDim={selected.n} />}
     </>
@@ -114,12 +126,14 @@ function DimensionDetail({
   dims,
   selectedIndex,
   showSkill,
+  fichaBody,
 }: {
   brandCode: string;
   dim: BrandDimension;
   dims: BrandDimension[];
   selectedIndex: number;
   showSkill: boolean;
+  fichaBody?: string;
 }) {
   const previous = dims[selectedIndex - 1] ?? dims[dims.length - 1];
   const next = dims[selectedIndex + 1] ?? dims[0];
@@ -146,26 +160,30 @@ function DimensionDetail({
 
       <p className="mb-6 text-sm text-ink-soft">{dim.summary}</p>
 
-      <div className="space-y-5">
-        {dim.fields.map((field) => (
-          <div key={field.label} className="grid gap-2 md:grid-cols-[140px_1fr]">
-            <div className="eyebrow">{field.label}</div>
-            <div className="whitespace-pre-line text-sm">
-              {Array.isArray(field.value) ? (
-                <ul className="space-y-1">
-                  {field.value.map((value) => (
-                    <li key={value} className="pl-4 before:mr-2 before:content-['·']">
-                      {value}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                field.value
-              )}
+      {fichaBody ? (
+        <FichaBody body={fichaBody} />
+      ) : (
+        <div className="space-y-5">
+          {dim.fields.map((field) => (
+            <div key={field.label} className="grid gap-2 md:grid-cols-[140px_1fr]">
+              <div className="eyebrow">{field.label}</div>
+              <div className="whitespace-pre-line text-sm">
+                {Array.isArray(field.value) ? (
+                  <ul className="space-y-1">
+                    {field.value.map((value) => (
+                      <li key={value} className="pl-4 before:mr-2 before:content-['·']">
+                        {value}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  field.value
+                )}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {dim.pending && dim.pending.length > 0 && (
         <div className="mt-6 border border-[var(--amber)] bg-[#fffaf0] p-4">
@@ -178,6 +196,61 @@ function DimensionDetail({
         </div>
       )}
     </aside>
+  );
+}
+
+function FichaBody({ body }: { body: string }) {
+  const lines = body.split(/\r?\n/);
+
+  return (
+    <div className="space-y-2 text-sm">
+      {lines.map((line, index) => {
+        const key = `${index}-${line.slice(0, 16)}`;
+        const trimmed = line.trim();
+        if (!trimmed) return <div key={key} className="h-3" />;
+
+        if (trimmed.startsWith("[Persona")) {
+          return (
+            <h3 key={key} className="pt-3 text-base font-semibold">
+              {trimmed}
+            </h3>
+          );
+        }
+
+        if (trimmed.startsWith("- ")) {
+          return (
+            <div key={key} className="flex gap-3 pl-3">
+              <span className="text-muted">•</span>
+              <span>{trimmed.slice(2)}</span>
+            </div>
+          );
+        }
+
+        const fieldMatch = trimmed.match(/^([^:]{2,58}):\s*(.*)$/);
+        if (fieldMatch) {
+          return (
+            <div key={key} className="grid gap-2 md:grid-cols-[160px_1fr]">
+              <div className="eyebrow">{fieldMatch[1]}</div>
+              <div className="whitespace-pre-line">{fieldMatch[2]}</div>
+            </div>
+          );
+        }
+
+        if (/^[A-ZÁÉÍÓÚÑ][A-Za-zÁÉÍÓÚÑáéíóúñ0-9\s/()+-]+:$/.test(trimmed)) {
+          return (
+            <h3 key={key} className="pt-3 text-base font-semibold">
+              {trimmed}
+            </h3>
+          );
+        }
+
+        return (
+          <p key={key} className="whitespace-pre-line">
+            {trimmed}
+          </p>
+        );
+      })}
+    </div>
   );
 }
 
