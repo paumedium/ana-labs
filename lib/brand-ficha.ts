@@ -16,6 +16,18 @@ export type BrandFicha = {
   sections: BrandFichaSection[];
   pendingCount: number;
   referenceCount: number;
+  format: BrandFichaFormat;
+};
+
+export type BrandFichaFormat = {
+  separatorCount: number;
+  exactSeparatorCount: number;
+  expectedSeparatorLength: number;
+  hasCanonicalHeader: boolean;
+  hasGeneratedLine: boolean;
+  hasSourcesLine: boolean;
+  hasTwelveSections: boolean;
+  issues: string[];
 };
 
 export async function getBrandFichaSections(slug: string): Promise<BrandFichaSection[]> {
@@ -58,10 +70,11 @@ export function parseBrandFicha(raw: string): BrandFicha {
     sections,
     pendingCount: countMatches(raw, /(pendiente|verificar vigencia|requiere validar|requiere insumo)/gi),
     referenceCount: countMatches(raw, /(referencial|fuente|mayo 2026|2025|2026)/gi),
+    format: inspectFichaFormat(raw, sections),
   };
 }
 
-function parseHeader(rawHeader: string): Omit<BrandFicha, "sections" | "pendingCount" | "referenceCount"> {
+function parseHeader(rawHeader: string): Omit<BrandFicha, "sections" | "pendingCount" | "referenceCount" | "format"> {
   const lines = rawHeader
     .split(/\r?\n/)
     .map((line) => line.trim())
@@ -105,6 +118,34 @@ function countMatches(value: string, pattern: RegExp): number {
   return value.match(pattern)?.length ?? 0;
 }
 
+function inspectFichaFormat(raw: string, sections: BrandFichaSection[]): BrandFichaFormat {
+  const separators = raw.match(/═+/g) ?? [];
+  const exactSeparatorCount = separators.filter((separator) => separator.length === 39).length;
+  const sectionNumbers = sections.map((section) => section.n);
+  const hasTwelveSections = sectionNumbers.length === 12 && sectionNumbers.every((n, index) => n === String(index + 1).padStart(2, "0"));
+  const hasCanonicalHeader = /^FICHA DE MARCA INTEGRAL — .+/m.test(raw);
+  const hasGeneratedLine = /^12 dimensiones — Generado por Ana Labs — \d{4}-\d{2}-\d{2}$/m.test(raw);
+  const hasSourcesLine = /^Fuentes:\s+.+/m.test(raw);
+  const issues: string[] = [];
+
+  if (!hasCanonicalHeader) issues.push("Header canónico ausente");
+  if (!hasGeneratedLine) issues.push("Línea de generación inválida");
+  if (!hasSourcesLine) issues.push("Fuentes no declaradas");
+  if (!hasTwelveSections) issues.push("Numeración 1-12 incompleta");
+  if (separators.length < 24 || exactSeparatorCount !== separators.length) issues.push("Separadores fuera de formato");
+
+  return {
+    separatorCount: separators.length,
+    exactSeparatorCount,
+    expectedSeparatorLength: 39,
+    hasCanonicalHeader,
+    hasGeneratedLine,
+    hasSourcesLine,
+    hasTwelveSections,
+    issues,
+  };
+}
+
 function emptyBrandFicha(): BrandFicha {
   return {
     title: "FICHA DE MARCA INTEGRAL",
@@ -112,5 +153,15 @@ function emptyBrandFicha(): BrandFicha {
     sections: [],
     pendingCount: 0,
     referenceCount: 0,
+    format: {
+      separatorCount: 0,
+      exactSeparatorCount: 0,
+      expectedSeparatorLength: 39,
+      hasCanonicalHeader: false,
+      hasGeneratedLine: false,
+      hasSourcesLine: false,
+      hasTwelveSections: false,
+      issues: ["Ficha no encontrada"],
+    },
   };
 }

@@ -131,6 +131,7 @@ function FichaSnapshot({ ficha, dims }: { ficha: BrandFicha; dims: BrandDimensio
   const critical = dims.find((dim) => dim.required === "critica");
   const sourcesLabel = ficha.sources.length === 1 ? "1 fuente" : `${ficha.sources.length} fuentes`;
   const pendingLabel = ficha.pendingCount === 0 ? "Sin pendientes detectados" : `${ficha.pendingCount} alertas`;
+  const formatOk = ficha.format.issues.length === 0;
 
   return (
     <div className="mb-8 border border-line bg-paper-soft p-5">
@@ -149,7 +150,14 @@ function FichaSnapshot({ ficha, dims }: { ficha: BrandFicha; dims: BrandDimensio
         <FichaMetric label="Fecha" value={ficha.generatedAt ?? "pendiente"} />
         <FichaMetric label="Fuentes" value={sourcesLabel} />
         <FichaMetric label="Alertas" value={pendingLabel} tone={ficha.pendingCount > 0 ? "amber" : "green"} />
-        <FichaMetric label="Dim crítica" value={critical ? `DIM-${critical.n} ${critical.status}` : "pendiente"} />
+        <FichaMetric label="Formato" value={formatOk ? "Canónico" : `${ficha.format.issues.length} alertas`} tone={formatOk ? "green" : "amber"} />
+      </div>
+
+      <div className="mt-4 grid gap-3 border-t border-line pt-4 md:grid-cols-4">
+        <FichaCheck label="Header" ok={ficha.format.hasCanonicalHeader} />
+        <FichaCheck label="12 secciones" ok={ficha.format.hasTwelveSections} />
+        <FichaCheck label="Fecha ISO" ok={ficha.format.hasGeneratedLine} />
+        <FichaCheck label={`Separadores ${ficha.format.expectedSeparatorLength}`} ok={ficha.format.separatorCount >= 24 && ficha.format.separatorCount === ficha.format.exactSeparatorCount} />
       </div>
 
       {ficha.sources.length > 0 && (
@@ -164,6 +172,11 @@ function FichaSnapshot({ ficha, dims }: { ficha: BrandFicha; dims: BrandDimensio
           </div>
         </div>
       )}
+      {critical && (
+        <div className="mt-4 text-xs text-muted">
+          Dimensión crítica del sistema: DIM-{critical.n} {critical.title}. Alimenta buyer persona, dolor/anhelo y tensión narrativa.
+        </div>
+      )}
     </div>
   );
 }
@@ -175,6 +188,15 @@ function FichaMetric({ label, value, tone = "neutral" }: { label: string; value:
     <div className="border border-line bg-paper p-3">
       <div className="eyebrow mb-1">{label}</div>
       <div className={`text-sm font-semibold ${toneClass}`}>{value}</div>
+    </div>
+  );
+}
+
+function FichaCheck({ label, ok }: { label: string; ok: boolean }) {
+  return (
+    <div className="flex items-center justify-between border border-line bg-paper px-3 py-2">
+      <span className="mono text-[10px] uppercase text-muted">{label}</span>
+      <span className={`status-pill ${ok ? "status-pill-ok" : "status-pill-rev"}`}>{ok ? "ok" : "revisar"}</span>
     </div>
   );
 }
@@ -367,10 +389,34 @@ function SkillDrawer({ brandCode, selectedDim }: { brandCode: string; selectedDi
         <section>
           <div className="eyebrow mb-3">Formato canónico</div>
           <ul className="space-y-2">
-            <li>12 dimensiones numeradas y separadas para que la UI pueda parsearlas.</li>
-            <li>Cabecera con fecha, generador y fuentes principales.</li>
-            <li>Datos inferidos o incompletos quedan marcados como pendientes.</li>
-            <li>Precios y cifras se tratan como referenciales cuando requieren vigencia.</li>
+            <li>Header: FICHA DE MARCA INTEGRAL — {"{MARCA}"}.</li>
+            <li>Línea obligatoria: 12 dimensiones — Generado por Ana Labs — YYYY-MM-DD.</li>
+            <li>Separadores de 39 caracteres entre secciones, sin cambiar el carácter.</li>
+            <li>Header de dimensión: N. TÍTULO, numerado del 1 al 12.</li>
+            <li>Fuentes declaradas en una sola línea antes de la primera dimensión.</li>
+          </ul>
+        </section>
+
+        <section>
+          <div className="eyebrow mb-3">Sintaxis del texto</div>
+          <ul className="space-y-2">
+            <li>Campos simples como Clave: valor.</li>
+            <li>Listas con dos espacios, guion y espacio.</li>
+            <li>Personas con [Persona N] Nombre y subcampos indentados.</li>
+            <li>Objeciones con formato “pregunta” → respuesta.</li>
+            <li>Sin datos: (Información pendiente — requiere insumo del cliente).</li>
+            <li>Datos inferidos: agregar (pendiente validar) al final.</li>
+            <li>Precios antiguos: marcar como referenciales y verificar vigencia.</li>
+          </ul>
+        </section>
+
+        <section>
+          <div className="eyebrow mb-3">Idioma y tono</div>
+          <ul className="space-y-2">
+            <li>Español con tildes, ñ y signos de apertura.</li>
+            <li>Sin emojis dentro de la ficha canónica.</li>
+            <li>Objetivo, profesional, estratégico y accesible.</li>
+            <li>Hechos verificables antes que opinión editorial o jerga técnica.</li>
           </ul>
         </section>
 
