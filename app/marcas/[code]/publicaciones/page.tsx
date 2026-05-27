@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getBrand, getCreativePieces, getPublications, type Publication } from "@/lib/mock-data";
+import { getBrand, getCreativePieces, getPublications, type Brand, type Publication } from "@/lib/mock-data";
 import { SiteHeader } from "@/components/site-header";
 
 const statusClass: Record<Publication["status"], string> = {
@@ -16,6 +16,9 @@ export default async function PublicacionesPage({ params }: { params: Promise<{ 
   const posts = getPublications(code);
   const pieces = getCreativePieces(code);
   const days = Array.from({ length: 35 }, (_, index) => index + 1);
+  const activeChannels = brandChannels(brand.socials);
+  const scheduledChannels = [...new Set(posts.map((post) => post.channel))];
+  const inactiveScheduled = scheduledChannels.filter((channel) => !activeChannels.includes(channel));
 
   return (
     <>
@@ -26,8 +29,16 @@ export default async function PublicacionesPage({ params }: { params: Promise<{ 
             <div className="eyebrow mb-2">Publicaciones</div>
             <h1 className="text-4xl font-semibold">PUBLICACIONES</h1>
           </div>
-          <div className="mono text-[11px] uppercase text-muted">4 redes · {posts.length} posts</div>
+          <div className="mono text-[11px] uppercase text-muted">
+            {channelCountLabel(activeChannels.length)} · {posts.length} posts
+          </div>
         </div>
+
+        {inactiveScheduled.length > 0 && (
+          <div className="mb-6 border border-[var(--amber)] bg-[#fffaf0] p-4 text-sm text-ink-soft">
+            Hay publicaciones en canales no activos para esta marca: {inactiveScheduled.join(", ")}. Validar antes de programar.
+          </div>
+        )}
 
         <div className="grid gap-6 xl:grid-cols-[640px_1fr]">
           <section>
@@ -108,4 +119,17 @@ function Filter({ label, count, active }: { label: string; count: number; active
       <span>({count})</span>
     </div>
   );
+}
+
+function brandChannels(socials: Brand["socials"]): Publication["channel"][] {
+  const channels: Publication["channel"][] = [];
+  if (socials.instagram) channels.push("Instagram");
+  if (socials.facebook) channels.push("Facebook");
+  if (socials.linkedin) channels.push("LinkedIn");
+  if (socials.tiktok) channels.push("TikTok");
+  return channels;
+}
+
+function channelCountLabel(count: number): string {
+  return count === 1 ? "1 canal activo" : `${count} canales activos`;
 }
