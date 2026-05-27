@@ -1,137 +1,136 @@
 import Link from "next/link";
-import { brands, stats } from "@/lib/mock-data";
+import { brands, getBrandUsers, stats, type Brand } from "@/lib/mock-data";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
 export default function MarcasPage() {
+  const selected = brands[0];
+  const users = selected ? getBrandUsers(selected.code) : [];
+
   return (
     <>
       <SiteHeader />
-      <div className="flex-1 px-6 py-8 max-w-[1600px] mx-auto w-full">
-        {/* Breadcrumb + stats */}
-        <div className="flex justify-between items-baseline mb-6">
-          <div className="eyebrow">ANA LABS · MARCAS</div>
-          <div className="mono text-[11px] text-muted tracking-[0.08em] uppercase flex gap-4">
-            <span>Requerimientos → {stats.requerimientosActivas} activas</span>
-            <span>{stats.usuariosTotal} usuario{stats.usuariosTotal !== 1 ? "s" : ""}</span>
+      <main className="mx-auto flex w-full max-w-[1600px] flex-1 flex-col px-6 py-8">
+        <div className="mb-6 flex flex-wrap items-baseline justify-between gap-3">
+          <div>
+            <div className="eyebrow mb-3">ANA LABS · MARCAS</div>
+            <h1 className="text-4xl font-semibold">MARCAS</h1>
+          </div>
+          <div className="mono flex flex-wrap gap-4 text-[11px] uppercase text-muted">
+            <Link href="/marcas/VPM/requerimientos" className="border border-line px-3 py-1.5 hover:border-ink hover:text-ink">
+              Requerimientos
+            </Link>
+            <span>{stats.requerimientosActivas} activas</span>
+            <span>{stats.usuariosTotal} usuarios</span>
             <span>{stats.crsTotal} CRS</span>
           </div>
         </div>
 
-        <h1 className="text-4xl font-semibold mb-8 tracking-tight">MARCAS</h1>
-
         <div className="divider mb-6" />
 
-        <div className="grid grid-cols-[320px_1fr] gap-8">
-          {/* Sidebar de marcas */}
-          <div className="space-y-1">
-            {brands.length === 0 && (
-              <div className="text-sm text-muted">No hay marcas cargadas todavía.</div>
-            )}
-            {brands.map((b, i) => (
+        <div className="grid gap-5 lg:grid-cols-[360px_1fr]">
+          <aside className="border border-line">
+            {brands.map((brand, index) => (
               <Link
-                key={b.code}
-                href={`/marcas/${b.code}/cover`}
-                className={`block px-4 py-3 border ${
-                  i === 0 ? "border-ink bg-paper-soft" : "border-transparent hover:bg-paper-soft hover:border-line"
-                } transition`}
+                key={brand.code}
+                href={`/marcas/${brand.code}/cover`}
+                className={`block border-b border-line px-4 py-4 transition last:border-b-0 ${
+                  index === 0 ? "bg-paper-soft shadow-[inset_3px_0_0_var(--ink)]" : "hover:bg-paper-soft"
+                }`}
               >
-                <div className="flex items-baseline gap-3">
-                  <span className="mono text-[10px] text-muted tracking-[0.15em] w-8">{b.code}</span>
-                  <span className="font-medium">{b.name}</span>
+                <div className="flex items-baseline gap-4">
+                  <span className="mono w-9 text-[10px] uppercase text-muted">{brand.code}</span>
+                  <span className="font-medium">{brand.name}</span>
                 </div>
-                <div className="mono text-[10px] text-muted tracking-[0.08em] uppercase ml-11 mt-1">
-                  {b.crs} CRS · {b.assets} ASSETS · {b.users} USR
+                <div className="mono ml-[52px] mt-1 text-[10px] uppercase text-muted">
+                  {brand.crs} CRS · {brand.assets} assets · {brand.users} usr
                 </div>
               </Link>
             ))}
+          </aside>
 
-            <Link
-              href="#"
-              className="block px-4 py-3 border border-dashed border-line hover:border-accent hover:bg-accent-soft mt-4 transition"
-            >
-              <div className="flex items-baseline gap-3">
-                <span className="mono text-[10px] text-muted tracking-[0.15em] w-8">+</span>
-                <span className="font-medium">Nueva marca</span>
-              </div>
-              <div className="mono text-[10px] text-muted tracking-[0.08em] uppercase ml-11 mt-1">
-                CREAR
-              </div>
-            </Link>
-          </div>
-
-          {/* Detalle de marca seleccionada */}
-          {brands[0] && <BrandDetail brand={brands[0]} />}
+          {selected && <BrandDetail brand={selected} users={users} />}
         </div>
-      </div>
+      </main>
       <SiteFooter />
     </>
   );
 }
 
-function BrandDetail({ brand }: { brand: typeof brands[0] }) {
+function BrandDetail({ brand, users }: { brand: Brand; users: ReturnType<typeof getBrandUsers> }) {
   return (
-    <div className="border border-line p-6 bg-paper">
-      <div className="flex justify-between items-start mb-4">
+    <section className="border border-line bg-paper">
+      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-line p-6">
         <div>
-          <div className="eyebrow mb-2">{brand.code} · {brand.code}</div>
-          <h2 className="text-3xl font-semibold tracking-tight">{brand.name}</h2>
-          <div className="mono text-[11px] text-muted tracking-[0.08em] uppercase mt-2 flex gap-3">
+          <div className="eyebrow mb-2">{brand.code} · {brand.slug}</div>
+          <h2 className="text-3xl font-semibold">{brand.name}</h2>
+          <p className="mt-2 max-w-2xl text-sm text-muted">{brand.slogan}</p>
+          <div className="mono mt-3 flex flex-wrap gap-3 text-[11px] uppercase text-muted">
             <span>{brand.crs} CRS</span>
-            <span className="opacity-50">·</span>
-            <span>{brand.assets} ASSETS</span>
-            <span className="opacity-50">·</span>
-            <span>{brand.users} USUARIOS</span>
+            <span>·</span>
+            <span>{brand.assets} assets</span>
+            <span>·</span>
+            <span>{brand.users} usuarios</span>
           </div>
         </div>
         <Link
           href={`/marcas/${brand.code}/cover`}
-          className="mono text-[10px] tracking-[0.12em] uppercase px-3 py-2 border border-line hover:bg-ink hover:text-paper hover:border-ink transition"
+          className="mono border border-line px-4 py-2 text-[10px] uppercase transition hover:border-ink hover:bg-ink hover:text-paper"
         >
-          👁 Dashboard cliente
+          Dashboard cliente
         </Link>
       </div>
 
-      <div className="divider mb-4" />
-
-      <div className="flex gap-6 mb-6 border-b border-line">
-        <button className="mono text-[11px] tracking-[0.12em] uppercase pb-2 border-b-2 border-accent text-ink">
-          Usuarios ({brand.users})
-        </button>
-        <button className="mono text-[11px] tracking-[0.12em] uppercase pb-2 text-muted hover:text-ink">
-          Integraciones
-        </button>
-        <button className="mono text-[11px] tracking-[0.12em] uppercase pb-2 text-muted hover:text-ink">
-          Links
-        </button>
+      <div className="border-b border-line px-6 pt-4">
+        <div className="flex gap-6">
+          <button className="mono border-b-2 border-ink pb-3 text-[11px] uppercase">Usuarios ({users.length})</button>
+          <button className="mono pb-3 text-[11px] uppercase text-muted">Integraciones</button>
+          <button className="mono pb-3 text-[11px] uppercase text-muted">Links</button>
+        </div>
       </div>
 
-      <button className="mono text-[11px] tracking-[0.12em] uppercase px-4 py-2 border border-line hover:bg-ink hover:text-paper transition mb-4">
-        + Invitar usuario
-      </button>
+      <div className="p-6">
+        <button className="mono mb-5 border border-line bg-paper-soft px-4 py-2 text-[11px] uppercase text-muted">
+          + Invitar usuario
+        </button>
 
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="border-b border-line">
-            <th className="text-left py-2 eyebrow font-normal">Email</th>
-            <th className="text-left py-2 eyebrow font-normal">Rol</th>
-            <th className="text-left py-2 eyebrow font-normal">Estado</th>
-            <th className="text-left py-2 eyebrow font-normal">Invitado</th>
-            <th className="text-left py-2 eyebrow font-normal">Último acceso</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="border-b border-line/50">
-            <td className="py-3">anapaula@driven.com.ar</td>
-            <td className="py-3 mono text-xs uppercase tracking-[0.08em]">Admin</td>
-            <td className="py-3">
-              <span className="status-pill status-pill-ok">Activo</span>
-            </td>
-            <td className="py-3 text-muted text-xs">hoy</td>
-            <td className="py-3 text-muted text-xs">hoy</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        <div className="overflow-x-auto border border-line">
+          <table className="w-full min-w-[760px] text-sm">
+            <thead className="bg-paper-soft">
+              <tr className="border-b border-line">
+                <th className="eyebrow px-4 py-3 text-left font-normal">Email</th>
+                <th className="eyebrow px-4 py-3 text-left font-normal">Rol</th>
+                <th className="eyebrow px-4 py-3 text-left font-normal">Estado</th>
+                <th className="eyebrow px-4 py-3 text-left font-normal">Invitado</th>
+                <th className="eyebrow px-4 py-3 text-left font-normal">Último acceso</th>
+                <th className="eyebrow px-4 py-3 text-right font-normal">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr key={user.email} className="border-b border-line last:border-b-0">
+                  <td className="px-4 py-4">{user.email}</td>
+                  <td className="mono px-4 py-4 text-[11px] uppercase">{user.role}</td>
+                  <td className="px-4 py-4">
+                    <span className={`status-pill ${user.status === "activo" ? "status-pill-ok" : "status-pill-miss"}`}>
+                      {user.status}
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 text-muted">{user.invited}</td>
+                  <td className="px-4 py-4 text-muted">{user.lastAccess}</td>
+                  <td className="px-4 py-4 text-right">
+                    <span className="mono inline-flex gap-2 text-[10px] text-muted">
+                      <button className="border border-line px-2 py-1">Enviar</button>
+                      <button className="border border-line px-2 py-1">Rol</button>
+                      <button className="border border-line px-2 py-1 text-[var(--red)]">Quitar</button>
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   );
 }
