@@ -28,6 +28,27 @@ const statusDotClass: Record<CreativePiece["status"], string> = {
   borrador: "bg-muted",
 };
 
+const aestheticRegisters = [
+  "metafora-minimalista-solitaria",
+  "editorial-monumental",
+  "ugc-scribble",
+  "brand-dominant-flat",
+  "cinematic-direccional",
+  "portal-organico",
+  "split-frame-arc",
+  "anatomy-heat-overlay",
+];
+
+const aestheticPatternCandidates = [
+  "#35 object-as-other-minimalist",
+  "#36 page-curl-reveal",
+  "#37 hand-through-symbol",
+  "#38 eye-as-micro-portal",
+  "#39 type-treatment-imperfecto",
+  "#40 product-monumentality-lifestyle-wide-angle",
+  "#41 scribble-overlay-portrait",
+];
+
 export default async function CoverPage({
   params,
   searchParams,
@@ -339,6 +360,8 @@ function DetailsPanel({ brand, piece, showSkill }: { brand: Brand; piece: Creati
           <dd>{brand.name}</dd>
           <dt className="mono uppercase text-muted">Patrón</dt>
           <dd>{patternFor(piece)}</dd>
+          <dt className="mono uppercase text-muted">Registro</dt>
+          <dd>{aestheticFor(piece).label}</dd>
           <dt className="mono uppercase text-muted">Anchor</dt>
           <dd>{anchorFor(piece)}</dd>
           <dt className="mono uppercase text-muted">Visual</dt>
@@ -405,10 +428,12 @@ function CoverSkillDrawer({ brand, piece }: { brand: Brand; piece: CreativePiece
     ["Anchor", "Elige DIM ancla y apoyo para no diluir el brief en toda la ficha."],
     ["Textos", "Normaliza headline, subhead, CTA y copy de redes por separado."],
     ["Sistema visual", "Selecciona patrón, paleta, escala, assets, logo y contact strip."],
+    ["Eje estético", "Modula composición: minimalista, monumental, UGC, cinematic, portal o heat-map."],
     ["Prompt 6 bloques", "Artifact, Exact Text, Layout, Visual System, Details y Constraints."],
     ["Moderación", "Revisa restricciones de marca, texto exacto, acentos y datos factuales."],
     ["Output", "Deja la pieza en revisión con pipeline auditable y lista para aprobar."],
   ];
+  const currentAesthetic = aestheticFor(piece);
 
   return (
     <aside className="border border-line bg-paper-soft xl:sticky xl:top-6 xl:max-h-[calc(100vh-7rem)] xl:overflow-y-auto">
@@ -462,6 +487,42 @@ function CoverSkillDrawer({ brand, piece }: { brand: Brand; piece: CreativePiece
           </div>
         </section>
 
+        <section>
+          <div className="eyebrow mb-3">Eje estético</div>
+          <div className="space-y-3">
+            <div className="border border-line bg-paper p-3">
+              <div className="mono text-[10px] uppercase text-muted">Registro actual</div>
+              <div className="mt-1 text-sm font-medium">{currentAesthetic.label}</div>
+              <div className="mt-1 text-xs text-muted">{currentAesthetic.body}</div>
+            </div>
+            <div>
+              <div className="mono mb-2 text-[10px] uppercase text-muted">Registros disponibles</div>
+              <div className="flex flex-wrap gap-1.5">
+                {aestheticRegisters.map((register) => (
+                  <span
+                    key={register}
+                    className={`mono border px-2 py-1 text-[9px] uppercase ${
+                      register === currentAesthetic.slug ? "border-ink bg-ink text-paper" : "border-line bg-paper text-muted"
+                    }`}
+                  >
+                    {register}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="mono mb-2 text-[10px] uppercase text-muted">Patrones candidatos #35-#41</div>
+              <div className="space-y-1 text-xs text-ink-soft">
+                {aestheticPatternCandidates.map((pattern) => (
+                  <div key={pattern} className="border-b border-line pb-1 last:border-b-0">
+                    {pattern}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="border border-line bg-paper p-3">
           <div className="eyebrow mb-2">Pieza actual</div>
           <div className="text-sm font-medium">#{piece.id} - {piece.title}</div>
@@ -501,6 +562,7 @@ function buildCoverPipeline(piece: CreativePiece) {
     { title: "Anchor", body: anchorFor(piece) },
     { title: "Textos", body: `${piece.headline} / ${piece.subhead} / CTA: ${ctaFor(piece)}` },
     { title: "Sistema visual", body: `${patternFor(piece)} + paleta ${piece.palette} + margen libre.` },
+    { title: "Registro estético", body: aestheticFor(piece).body },
     { title: "Prompt 6 bloques", body: "Artifact, Exact Text, Layout, Visual System, Details, Constraints." },
     { title: "Moderación", body: "Sin datos inventados, sin marcas externas y con acentos preservados." },
   ];
@@ -522,6 +584,49 @@ function patternFor(piece: CreativePiece) {
   if (piece.tags.includes("Vinoteca")) return "product-hero-block-panel";
   if (piece.tags.includes("Mundial")) return "photo-frame-cutout";
   return "type-lockup";
+}
+
+function aestheticFor(piece: CreativePiece) {
+  if (piece.kind === "ugc") {
+    return {
+      slug: "ugc-scribble",
+      label: "ugc-scribble",
+      body: "Lifestyle natural con anotaciones manuscritas, ideal para testimonio o escena cotidiana.",
+    };
+  }
+  if (piece.tags.includes("Mundial")) {
+    return {
+      slug: "editorial-monumental",
+      label: "editorial-monumental",
+      body: "Tipografía protagonista, escala grande y composición de alto impacto institucional.",
+    };
+  }
+  if (piece.tags.includes("Vinoteca")) {
+    return {
+      slug: "cinematic-direccional",
+      label: "cinematic-direccional",
+      body: "Luz direccional, producto protagonista y clima editorial con profundidad controlada.",
+    };
+  }
+  if (piece.tags.includes("Maceración")) {
+    return {
+      slug: "metafora-minimalista-solitaria",
+      label: "metafora-minimalista-solitaria",
+      body: "Una metáfora visual principal sobre fondo limpio, con mucho aire y sin decoración sobrante.",
+    };
+  }
+  if (piece.tags.includes("B2B")) {
+    return {
+      slug: "brand-dominant-flat",
+      label: "brand-dominant-flat",
+      body: "Color de marca dominante, contraste fuerte y geometría plana para lectura inmediata.",
+    };
+  }
+  return {
+    slug: "default",
+    label: "default",
+    body: "Baseline editorial: respeta patrón, paleta, escala y restricciones sin override estético.",
+  };
 }
 
 function ctaFor(piece: CreativePiece) {
