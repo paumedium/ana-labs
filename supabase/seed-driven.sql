@@ -7,10 +7,10 @@ values (
   'Driven',
   'driven',
   'Equipate para todo',
-  4,
-  9,
-  1,
-  '{"web":"https://driven.com.ar","instagram":"https://instagram.com/driven.ar","facebook":"https://facebook.com/driven.ar","tiktok":"https://tiktok.com/@driven.ar"}'::jsonb,
+  12,
+  12,
+  2,
+  '{"web":"https://driven.com.ar","instagram":"https://instagram.com/driven.ar","facebook":"https://facebook.com/driven.ar","whatsapp":"https://wa.me/5491126082642"}'::jsonb,
   'active'
 )
 on conflict (code) do update set
@@ -26,7 +26,7 @@ on conflict (code) do update set
 insert into public.brand_members (brand_id, email, role, status, invited_label, last_access_label)
 values
   ((select id from public.brands where code = 'DRV'), 'paumedium@gmail.com', 'admin', 'activo', 'seed', 'hoy'),
-  ((select id from public.brands where code = 'DRV'), 'anapaula@driven.com.ar', 'admin', 'activo', 'seed', 'hoy')
+  ((select id from public.brands where code = 'DRV'), 'info@driven.com.ar', 'cliente', 'sin confirmar', 'seed', '-')
 on conflict (brand_id, email) do update set
   role = excluded.role,
   status = excluded.status,
@@ -39,272 +39,382 @@ values (
   $ana_ficha$
 FICHA DE MARCA INTEGRAL — DRIVEN
 Equipate para todo
-12 dimensiones — Generado por Ana Labs — 2026-05-27
-Fuentes: datos existentes en Ana Labs mock-data.ts, dominio informado driven.com.ar, Supabase Driven pendiente de importación
+12 dimensiones — Generado por Ana Labs — 2026-05-28
+Fuentes: driven.com.ar, brand profile Driven enviado por Ana, datos legales VECHER S.A., pauta estratégica Claude 2026-05-28
 
 ═══════════════════════════════════════
 1. IDENTIDAD CORPORATIVA
 ═══════════════════════════════════════
 Nombre comercial: Driven
-Razón social: (Información pendiente — requiere insumo del cliente)
+Razón social: VECHER S.A. (CUIT 30-71072698-8)
 Slogan: "Equipate para todo"
+Slogans secundarios: "Vamos más allá" · "Equipamiento Superior" · "Equipamiento para quienes no se quedan quietos"
 Fundación: (Información pendiente — requiere insumo del cliente)
-Sede: Argentina (ciudad y provincia pendientes de validar)
-Gerente General: (Información pendiente — requiere insumo del cliente)
-Sector: ecommerce / retail / distribución de productos y equipamiento (pendiente validar con cliente)
-Alcance geográfico: operación digital con alcance nacional potencial; cobertura real pendiente de importar desde Supabase Driven.
+Sede: José Vela 1450, Pergamino, Buenos Aires, Argentina
+Gerente General: Damián (dueño — apellido pendiente validar)
+Referente público / embajador: Facundo Arana aparece en análisis de Instagram; uso pendiente de confirmación con Damián.
+Sector: Equipamiento outdoor, 4x4, herramientas y motores.
+Alcance geográfico: Argentina — venta online y distribución a comercios, con envíos a todo el país.
+Datos legales que no publicar: stock real gestionado por SAP, infraestructura interna, márgenes, volúmenes y condiciones comerciales privadas.
 
 ═══════════════════════════════════════
 2. PROPÓSITO
 ═══════════════════════════════════════
-Misión: Ayudar a las personas a resolver sus compras de equipamiento con una experiencia simple, clara y confiable, reduciendo fricción entre necesidad, producto y entrega. (propuesta — pendiente validar)
+Misión: Dar equipamiento outdoor, 4x4, herramientas y motores que bancan el uso real, con respaldo argentino y garantía oficial. (propuesta — pendiente validar)
 
-Visión: Convertirse en una marca digital de referencia para quienes buscan productos útiles, seleccionados y fáciles de comprar, con una operación ordenada detrás de cada venta. (propuesta — pendiente validar)
+Visión: Consolidar a Driven como marca argentina de referencia para usuarios exigentes que buscan equiparse con productos robustos, probados y respaldados localmente. (propuesta — pendiente validar)
+
+Problema que resuelve: Evita que el usuario dependa de equipamiento barato o sin respaldo que puede fallar en una salida, taller, ruta o situación exigente.
 
 Valores:
-  - Claridad — información de producto, precio y disponibilidad sin vueltas.
-  - Utilidad — cada producto debe resolver una necesidad concreta.
-  - Confianza — compra simple, canales visibles y seguimiento responsable.
-  - Ritmo comercial — campañas activas, oferta clara y respuesta rápida.
+  - Calidad real — productos pensados para usar, no solo para verse bien en vidriera.
+  - Respaldo argentino — servicio, garantía y base física en Argentina.
+  - Autosuficiencia — equipa a personas que quieren resolver por sí mismas.
+  - Claridad comercial — producto, beneficio y condición sin vueltas.
+  - Comunidad — vínculo con personas que salen, viajan, arreglan y prueban el equipo en uso.
+
+Qué nunca debería comunicar: superlativos vacíos, miedo, FOMO artificial, ataques a la competencia o promesas de atención humana inmediata en web/WhatsApp.
 
 ═══════════════════════════════════════
 3. POSICIONAMIENTO ESTRATÉGICO
 ═══════════════════════════════════════
-Definición: Driven es una marca comercial digital orientada a productos útiles y equipamiento, con comunicación directa y foco en conversión. (pendiente validar)
+Definición: Marca argentina de equipamiento outdoor, 4x4, herramientas y motores con calidad real probada en uso, garantía oficial de 2 años y respaldo local.
 
-Propuesta de valor: "Driven simplifica la compra de equipamiento: productos claros, oferta directa y una experiencia pensada para resolver."
+Propuesta de valor: "Driven equipa a personas exigentes con productos robustos, probados y respaldados en Argentina para salir, trabajar y resolver con confianza."
 
 Propuesta por unidad:
-  - Ecommerce / tienda digital: compra directa, catálogo navegable y foco en disponibilidad.
-  - Campañas comerciales: productos destacados, bundles, lanzamientos y promociones de temporada.
-  - Atención por canales digitales: consultas rápidas, derivación a WhatsApp y seguimiento comercial.
+  - Outdoor y camping: equipamiento práctico para cocinar, hidratarse, iluminar, dormir y armar campamento.
+  - 4x4 y overlanding: compresores, eslingas, bidones, cables puente, criques y accesorios para travesías reales.
+  - Garage y herramientas: motores, compresores, iluminación y herramientas para mantenimiento DIY.
+  - Distribución a comercios: catálogo y productos para puntos de venta / revendedores. (condiciones pendiente validar)
 
-Elevator pitch: "Driven vende equipamiento útil para personas que quieren resolver una compra sin perder tiempo. La marca debe comunicar con claridad qué ofrece, por qué conviene y cómo comprar, usando piezas visuales simples, orientadas a producto y con CTAs directos."
+Elevator pitch: "Driven es una marca argentina de equipamiento outdoor, 4x4, herramientas y motores. No vende objetos de vidriera: vende equipo probado para uso real, con 2 años de garantía oficial y respaldo en el país. Para gente que sale a la ruta, arma campamento, trabaja en el garage o necesita que el equipo responda cuando importa."
 
 Claim principal: "Equipate para todo"
 
 Claims secundarios:
-  - "Lo que necesitás, listo para salir."
-  - "Productos útiles. Compra simple."
-  - "Elegí, consultá y resolvé."
-  - "Equipamiento claro para planes reales."
+  - "Te banca en el uso real"
+  - "Calidad de verdad, hecha para usar"
+  - "Vamos más allá"
+  - "Equipamiento para quienes no se quedan quietos"
+  - "Listo para la ruta, el campamento o el taller"
 
 Posición competitiva:
-                 Compra guiada / clara
+                 Respaldo local / garantía
                          ↑
-              Driven     │   Tiendas digitales curadas
+            Driven       │   Marcas técnicas premium
                          │
-Oferta útil       ←──────┼──────→ Oferta aspiracional
+Uso real        ←────────┼────────→ Lifestyle aspiracional
                          │
- Catálogos masivos       │   Marcas lifestyle premium
+ Importado genérico      │   Marcas outdoor de moda
                          ↓
-                 Compra dispersa / genérica
+                 Sin respaldo / compra riesgosa
+
+Competidores / alternativas: importados genéricos, productos baratos de marketplace, marcas de ferretería/outdoor locales y compras oportunistas en plataformas internacionales. Listado específico pendiente validar.
+Compite por: calidad, confianza, respaldo local y especialización en uso real. No compite por precio más bajo.
 
 ═══════════════════════════════════════
 4. ARQUITECTURA DE MARCA (Opcional)
 ═══════════════════════════════════════
-Estructura: marca única en esta primera carga.
+Estructura: marca única con líneas de producto. No hay sub-marcas como unidades separadas.
 
-Unidades posibles a validar:
-  - Tienda online: catálogo, producto destacado y compra directa.
-  - Mayorista / distribuidores: condiciones comerciales, listas y atención B2B. (pendiente validar)
-  - Contenido / social commerce: reels, covers, carruseles y UGC orientados a producto.
+Líneas / nombres de producto:
+  - Big Boy: compresores.
+  - Flamate: cocinas y anafes.
+  - Red Force: pavas.
+  - Bidón 15L: producto premiado por Instituto Argentino del Envase.
+
+Productos a comunicar separados:
+  - Garage / 4x4: compresores, eslingas, cables puente, criques, bidones.
+  - Térmicos: termos, mates, pavas, botellas térmicas, bolsos térmicos.
+  - Outdoor: cocina, agua, camping, iluminación, carpas, bolsas de dormir.
+  - Indumentaria y accesorios: prendas, bolsos, organización y accesorios de salida.
+
+Nombres internos que no usar públicamente:
+  - SAP, Route53, dashboards de sincronización y herramientas internas.
+  - Decir "Comunidad Driven" cuando corresponda; evitar "Equipo Driven" si no está validado.
 
 Puntos de servicio:
-  - Web: driven.com.ar (pendiente validar URL final activa)
-  - Instagram: @driven.ar (pendiente validar)
-  - Facebook / TikTok: canales informados en mock-data.ts, pendientes de validar.
+  - Web: driven.com.ar
+  - Instagram: @driven.ar
+  - Facebook: facebook.com/driven.ar
+  - WhatsApp: +54 9 11 2608-2642 (bot)
+  - Email: info@driven.com.ar
 
 ═══════════════════════════════════════
 5. PÚBLICO OBJETIVO + BUYER PERSONAS
 ═══════════════════════════════════════
 Segmentos:
-  - Comprador final digital — personas que buscan resolver una compra concreta con poca fricción.
-  - Comprador recurrente / fan de categoría — personas que siguen novedades, promociones y lanzamientos.
-  - Comprador B2B / revendedor — negocios o emprendedores que necesitan catálogo, precio y disponibilidad. (pendiente validar)
+  - Overlanders y usuarios 4x4 — travesías, ruta, Patagonia, Ruta 40, salidas técnicas.
+  - Lifestyle aventurero — camping de fin de semana, experiencia cómoda y estética utilitaria.
+  - Hobbistas de garage — mantenimiento DIY, herramientas, organización, autonomía.
+  - Comercios / distribuidores — canal B2B con catálogo y condiciones pendientes de validar.
 
-[Persona 1] Cliente que quiere resolver rápido
-  Perfil: Hombre o mujer, 25-45 años, compra online desde el celular, compara precios y necesita entender rápido si el producto le sirve.
-  Dolor: Se pierde en catálogos largos, fichas poco claras o publicaciones que muestran estética pero no explican uso.
-  Anhelo: Encontrar el producto correcto, entender el beneficio y comprar sin vueltas.
-  Cambio emocional: Duda y comparación eterna → decisión clara y compra resuelta
-  Diferenciador que le importa: Producto explicado en lenguaje simple, foto clara, precio visible y CTA directo.
+[Persona 1] Overlander Pro
+  Perfil: Persona de 35-55 años, ingreso medio-alto/alto, hace travesías 4x4 técnicas y usa el equipo lejos de centros urbanos.
+  Dolor: Quedarse tirado lejos o descubrir que un equipo barato falla cuando más lo necesita.
+  Anhelo: Llegar y volver sin contratiempos, con equipo confiable y probado.
+  Cambio emocional: Incertidumbre en ruta → tranquilidad operativa
+  Diferenciador que le importa: Confiabilidad probada, garantía oficial, servicio local y presencia en Argentine Adventure.
   Objeciones:
-    "No sé si esto me sirve" → Mostrar uso concreto, medida, compatibilidad y situación real.
-    "Capaz lo consigo más barato" → Comunicar valor total: disponibilidad, atención y compra simple.
-    "No confío en la tienda" → Mostrar canales, políticas y señales de operación real.
+    "¿Aguanta uso real?" → 2 años de garantía oficial + producto probado en contexto exigente.
+    "¿Hay repuesto o servicio?" → Respaldo local y base física en Argentina.
+    "¿Es serio o puro marketing?" → Premio Estrella del Sur, sponsor Argentine Adventure y comunidad real.
+  Compra o contrata: compresor Big Boy, eslingas, bidones, cables puente, criques y duchas.
+  Canal de decisión: Instagram @driven.ar, YouTube overlanding, grupos Facebook 4x4 y recomendación.
 
-[Persona 2] Comprador de oportunidad
-  Perfil: 20-40 años, sigue redes, reacciona a ofertas y productos destacados, compra cuando entiende que hay conveniencia.
-  Dolor: Ve muchas promociones iguales y no sabe cuál vale la pena.
-  Anhelo: Encontrar una oportunidad concreta sin sentir que está cayendo en una promo vacía.
-  Cambio emocional: Promoción genérica → hallazgo útil con motivo para comprar hoy
-  Diferenciador que le importa: Oferta simple, producto protagonista y urgencia controlada.
+[Persona 2] Lifestyle Aventurero
+  Perfil: Persona de 28-45 años, ingreso medio/medio-alto, hace camping de fin de semana y quiere verse preparado sin complicarse.
+  Dolor: Improvisar, olvidarse algo importante, pasar frío o sentirse principiante.
+  Anhelo: Disfrutar sin renegar y tener una salida prolija, cómoda y posteable.
+  Cambio emocional: Improvisado → preparado
+  Diferenciador que le importa: Practicidad, estética utilitaria genuina y facilidad de uso.
   Objeciones:
-    "¿Es una oferta real?" → Mostrar precio anterior / condición / beneficio con datos verificables.
-    "Lo pienso después" → CTA corto y recordatorio visual de utilidad.
-    "No era lo que buscaba" → Segmentar por situación de uso, no solo por producto.
+    "¿Es fácil de usar?" → Comunicar uso simple: disfrutá más, armá menos.
+    "¿Vale la pena?" → Calidad real, duración y respaldo.
+    "¿Queda bien?" → Mostrar estética outdoor honesta, no moda artificial.
+  Compra o contrata: anafe Flamate, mate, termo, pava Red Force, sillas, mesas, bolsas de dormir y linternas.
+  Canal de decisión: Instagram, TikTok outdoor pendiente validar y recomendación de amigos.
 
-[Persona 3] Revendedor / comprador B2B
-  Perfil: Emprendedor, comercio o revendedor que necesita catálogo confiable, margen, stock y respuesta rápida. (pendiente validar)
-  Dolor: Pierde tiempo pidiendo listas, condiciones o stock en canales desordenados.
-  Anhelo: Tener proveedor claro, rápido y con material que facilite vender.
-  Cambio emocional: Proveedor incierto → catálogo ordenado y respuesta comercial
-  Diferenciador que le importa: Lista clara, condiciones visibles, assets de producto y atención por WhatsApp.
+[Persona 3] Hobbista del Garage
+  Perfil: Persona de 30-55 años, ingreso medio/medio-alto, tiene taller en casa, hace mantenimiento DIY y disfruta resolver solo.
+  Dolor: Comprar una herramienta que se rompe al primer uso o no sirve para la tarea real.
+  Anhelo: Tener un garage equipado como profesional y no depender de otros para resolver.
+  Cambio emocional: Dependiente → autosuficiente
+  Diferenciador que le importa: Robustez, especificación técnica clara, garantía y calidad superior al importado sin respaldo.
   Objeciones:
-    "No sé si hay stock" → Confirmar disponibilidad antes de prometer.
-    "No tengo material para vender" → Entregar fotos, copies y argumentos por producto.
-    "Necesito condiciones" → Documentar mínimos, descuentos y logística. (pendiente validar)
+    "¿Se rompe rápido?" → Reforzado, hecho para usar y con garantía oficial.
+    "¿Me sirve para lo mío?" → Mostrar especificación técnica, medidas y situación de uso.
+    "¿Aguanta?" → Evidencia visual de uso real, materiales y prueba.
+  Compra o contrata: compresores chicos/medianos, criques, cables puente, iluminación de taller y organización.
+  Canal de decisión: YouTube mecánica DIY, reels how-to, Instagram y amigos mecánicos.
 
 Resumen de campos estratégicos:
-  Persona 1: dolor=catálogo confuso | anhelo=resolver rápido | cambio=duda → decisión clara
-  Persona 2: dolor=promos iguales | anhelo=oportunidad útil | cambio=scroll → compra con motivo
-  Persona 3: dolor=proveedor desordenado | anhelo=catálogo confiable | cambio=incertidumbre → operación clara
+  Persona 1: dolor=fallo lejos de asistencia | anhelo=llegar y volver | cambio=incertidumbre → tranquilidad
+  Persona 2: dolor=improvisar y renegar | anhelo=salida cómoda y preparada | cambio=improvisado → preparado
+  Persona 3: dolor=herramienta débil | anhelo=garage autónomo | cambio=dependiente → autosuficiente
 
 Beneficios tangibles:
-  - Catálogo digital editable y escalable.
-  - CTAs claros hacia web, WhatsApp o canal de compra.
-  - Creatividades por producto, oferta y temporada.
+  - 2 años de garantía oficial.
+  - Envíos a todo el país.
+  - Hasta 6 cuotas sin interés. (tarjetas y condiciones pendiente validar)
+  - 10% OFF primera compra por newsletter. (vigencia pendiente validar)
+  - Base física en Pergamino y respaldo local.
 
 Beneficios intangibles:
-  - Sensación de compra resuelta.
-  - Confianza por claridad operativa.
-  - Marca directa, útil y sin sobrepromesa.
+  - Confianza antes de salir.
+  - Tranquilidad de tener respaldo en Argentina.
+  - Sensación de estar preparado sin vender humo.
+  - Pertenencia a una comunidad de usuarios reales.
 
 ═══════════════════════════════════════
 6. DIFERENCIADORES
 ═══════════════════════════════════════
 Operativos:
-  - Marca preparada para comunicación de catálogo, ofertas y productos destacados.
-  - Enfoque en conversión: cada pieza debe explicar qué comprar y por qué ahora.
+  - Marca argentina con base física en Pergamino.
+  - Servicio y postventa local.
+  - Venta online con envíos a todo el país.
+  - Distribución a comercios. (condiciones pendiente validar)
 
 Tecnológicos / digitales:
-  - Presencia web informada: driven.com.ar (pendiente validar).
-  - Canales sociales informados: Instagram, Facebook y TikTok (pendiente validar).
-  - Base de datos histórica en Supabase Driven pendiente de importación.
+  - Web ecommerce driven.com.ar en Tiendanube.
+  - Instagram @driven.ar como canal de comunidad y conversión.
+  - WhatsApp bot +54 9 11 2608-2642.
+  - Gestión de stock por SAP; no publicar stock sin confirmación.
 
 De servicio:
-  - Atención digital como parte central del recorrido de compra.
-  - Potencial de derivación a WhatsApp para consultas y cierre. (pendiente validar)
+  - 2 años de garantía oficial.
+  - Respaldo argentino frente a importados sin postventa.
+  - Comunidad Driven como vínculo de cercanía.
+  - Sponsor Argentine Adventure como validación de uso real.
 
 De producto / oferta:
-  - Catálogo por categorías, productos héroe y campañas comerciales.
-  - Promociones y bundles posibles una vez importado el inventario real.
+  - Productos robustos/reforzados para ruta, campamento y taller.
+  - Líneas reconocibles: Big Boy, Flamate, Red Force y Bidón 15L.
+  - Premio Estrella del Sur del Instituto Argentino del Envase por el Bidón 15L.
+  - Certificaciones tipo ISO/UL/IEC mencionadas como evidencia técnica; alcance exacto pendiente validar.
 
 Catálogo de assets disponibles:
-  - [logos: pendiente | producto: pendiente | lifestyle: pendiente | UGC: pendiente | catálogo: pendiente]
+  - [logos: pendiente subir 3/3 (original + white + black) | producto: pendiente descargar desde web | interior: NO aplica | exterior: pendiente validar | fachada: pendiente validar | otro: sponsor / premio pendiente]
 
 ═══════════════════════════════════════
 7. COBERTURA Y OPERACIÓN (Opcional)
 ═══════════════════════════════════════
-Cobertura: (Información pendiente — requiere importación de Supabase Driven o validación del cliente)
+Cobertura: Argentina, con envíos a todo el país.
 
-Canales operativos iniciales:
-  - Web: driven.com.ar (pendiente validar)
-  - Instagram: @driven.ar (pendiente validar)
-  - WhatsApp: (Información pendiente — requiere insumo del cliente)
+Base:
+  Pergamino (base / operación) — José Vela 1450, Pergamino, Buenos Aires — teléfono público pendiente validar.
+
+Canales de atención:
+  - Web: driven.com.ar
+  - Instagram: @driven.ar
+  - Facebook: facebook.com/driven.ar
+  - WhatsApp: +54 9 11 2608-2642 (bot)
+  - Email: info@driven.com.ar
 
 Horarios: (Información pendiente — requiere insumo del cliente)
+Tiempos de respuesta: (Información pendiente — requiere insumo del cliente)
+Condiciones de entrega / retiro: envíos a todo el país; plazos por zona AMBA, Interior y Patagonia pendiente validar.
+Zonas donde no opera: (Información pendiente — requiere insumo del cliente)
+Retiro / local al público: (Información pendiente — requiere insumo del cliente)
 
 ═══════════════════════════════════════
 8. OFERTA COMERCIAL
 ═══════════════════════════════════════
 Servicios:
-  - Venta online de productos / equipamiento: catálogo digital con producto, precio, descripción, disponibilidad y CTA.
-    Condiciones: categorías, stock, medios de pago, envíos, cambios y garantías pendientes de validar.
-    Normativa: políticas comerciales y legales pendientes de cargar.
-    Tarifa: precios pendientes de importar desde catálogo real.
-  - Campañas por producto destacado: covers, carruseles y piezas UGC para explicar uso, beneficio y oferta.
-    Condiciones: requiere foto real, precio, SKU y disponibilidad.
-  - Comunicación mayorista / B2B: lista, condiciones comerciales y assets para revendedores. (pendiente validar)
-    Condiciones: mínimo de compra, margen y logística pendientes de validar.
+  - Compresores Big Boy: compresores para 4x4, garage y uso exigente.
+    Condiciones: especificaciones por SKU, presión, alimentación, accesorios y disponibilidad pendiente cargar.
+    Normativa: certificaciones técnicas pendiente validar por producto.
+    Tarifa: precio variable por SKU; no publicar sin dato SAP vigente.
+  - Bidones de combustible: bidones para travesía y uso outdoor, incluyendo Bidón 15L premiado.
+    Condiciones: capacidad, material, uso permitido y disponibilidad pendiente cargar.
+    Tarifa: precio variable por SKU; no publicar sin dato SAP vigente.
+  - Criques, cables puente, eslingas y amarres: equipamiento de rescate, emergencia y garage.
+    Condiciones: carga máxima, compatibilidad y uso seguro pendiente cargar.
+  - Cocinas portátiles Flamate, pavas Red Force, termos, mates y botellas térmicas: equipamiento para cocina outdoor y camping.
+    Condiciones: combustible, seguridad, capacidad y accesorios pendiente cargar.
+  - Camping, iluminación, organización e indumentaria: carpas, bolsas de dormir, duchas, mesas, sillas, bolsos, mochilas y accesorios.
+    Condiciones: medidas, materiales, talles y disponibilidad pendiente cargar.
 
 Procedimientos:
-  - Producto nuevo: cargar nombre, precio, foto, beneficio principal, objeción típica y CTA.
-  - Oferta: cargar precio vigente, fecha de inicio/fin y condición exacta.
-  - Requerimiento de campaña: cargar producto protagonista, objetivo comercial, canal y deadline.
+  - Producto nuevo: cargar SKU, nombre, precio vigente, foto 1:1, specs, beneficio principal, garantía aplicable y URL de compra.
+  - Oferta: cargar vigencia exacta, precio, condición y stock validado desde SAP.
+  - Garantía: cobertura exacta, requisitos, proceso y exclusiones pendiente validar.
+  - Devolución: días, condiciones, quién paga el retorno y si se devuelve dinero o crédito pendiente validar.
+  - Compra B2B: mínimos, condiciones, lista y logística pendiente validar.
 
-Marcas representadas: (Información pendiente — requiere insumo del cliente)
+Promos vigentes:
+  - 10% OFF primera compra al suscribirse al newsletter. Vigencia pendiente validar.
+  - Hasta 6 cuotas sin interés. Tarjetas y condiciones pendiente validar.
+
+Marcas representadas: Big Boy, Flamate y Red Force son líneas/nombres de producto Driven; marcas externas pendiente validar.
 
 ═══════════════════════════════════════
 9. CIFRAS CLAVE (Opcional)
 ═══════════════════════════════════════
-  - Productos activos: (Información pendiente — requiere importación de catálogo)
-  - Categorías: (Información pendiente — requiere importación de catálogo)
-  - Ticket promedio: (Información pendiente — requiere insumo del cliente)
-  - Canales activos: web, Instagram, Facebook, TikTok (pendiente validar)
+  - Garantía oficial: 2 años.
+  - Cuotas: hasta 6 cuotas sin interés. (condiciones pendiente validar)
+  - Primera compra: 10% OFF por newsletter. (vigencia pendiente validar)
+  - Cobertura: envíos a todo el país.
+  - Premio: Estrella del Sur del Instituto Argentino del Envase por el Bidón 15L.
+  - Sponsor: Argentine Adventure.
+  - Certificaciones: ISO/UL/IEC mencionadas; alcance exacto pendiente validar.
+  - Años de trayectoria: (Información pendiente — requiere insumo del cliente)
+  - Cantidad de clientes / ventas / sucursales: (Información pendiente — requiere insumo del cliente)
+
+Cifras internas que no publicar: márgenes, volúmenes de venta, stock real de SAP y datos de infraestructura.
 
 ═══════════════════════════════════════
 10. CANALES Y ACTIVOS DIGITALES
 ═══════════════════════════════════════
 Presencia digital:
-  Teléfono: (Información pendiente — requiere insumo del cliente)
-  WhatsApp: (Información pendiente — requiere insumo del cliente)
-  Instagram: @driven.ar (pendiente validar)
-  Facebook: driven.ar (pendiente validar)
-  Web: driven.com.ar (pendiente validar)
-  Tienda online: driven.com.ar (pendiente validar)
+  Teléfono: +54 9 11 2608-2642 (WhatsApp bot)
+  WhatsApp: +54 9 11 2608-2642 (bot, no prometer humano inmediato)
+  Instagram: @driven.ar
+  Facebook: facebook.com/driven.ar
+  TikTok: (Información pendiente — requiere insumo del cliente)
+  LinkedIn: (Información pendiente — requiere insumo del cliente)
+  Web: https://driven.com.ar
+  Tienda online: https://driven.com.ar (Tiendanube, theme Recife)
   Portal clientes: (Información pendiente — requiere insumo del cliente)
 
 Soporte y atención:
-  Email contacto: (Información pendiente — requiere insumo del cliente)
+  Email contacto: info@driven.com.ar
   Email especializado: (Información pendiente — requiere insumo del cliente)
   Tiempo respuesta RRSS: (Información pendiente — requiere insumo del cliente)
   Tiempo respuesta email: (Información pendiente — requiere insumo del cliente)
-  CRM/herramientas: Supabase Driven pendiente de importación.
+  CRM/herramientas: SAP para stock; Route53 y sync de fotos son internos y no comunicables.
+
+Canales que convierten mejor:
+  - Instagram: canal de comunidad y alta conversión.
+  - Web: cierre de compra.
+  - WhatsApp: bot para derivación, no atención humana inmediata.
+
+Handles exactos en piezas:
+  @driven.ar · driven.com.ar
 
 ═══════════════════════════════════════
 11. CTAS VALIDADOS
 ═══════════════════════════════════════
-  - Comprá online
-  - Consultá disponibilidad
-  - Pedilo por WhatsApp
-  - Ver catálogo
-  - Quiero precio mayorista
-  - Armá tu pedido
-  - Ver productos destacados
-  - Escribinos
+  - Equipate
+  - Comprá acá
+  - Probalo
+  - Sumalo
+  - Mirá más
+  - Conocé
+  - Llevalo
+  - Sumate
+  - Sumate a la Comunidad Driven
+
+CTAs prohibidos:
+  - Comprá YA
+  - Última oportunidad
+  - No te lo perdás
+  - Apurate
+  - Cualquier CTA con "no" en botones o microcopy.
+
+CTA principal: Equipate
+CTA para ventas: Comprá acá
+CTA para awareness: Conocé / Mirá más
+CTA para clientes actuales: Sumate a la Comunidad Driven
 
 ═══════════════════════════════════════
 12. PERSONALIDAD, ARQUETIPO Y TONO
 ═══════════════════════════════════════
-Arquetipo Mark/Pearson: Everyman
-Justificación: La marca debe sentirse útil, cercana y orientada a resolver compras reales, no a construir distancia aspiracional. (pendiente validar)
+Arquetipo Mark/Pearson: Explorer
+Justificación: Driven habla a personas que buscan libertad, salida, ruta, campamento y autosuficiencia. Su promesa es equipar para ir más allá con confianza real.
+
+Arquetipos secundarios: Creator / Hero
+Justificación secundaria: Creator aparece en la autosuficiencia del garage y el armado propio; Hero aparece en la resistencia del equipo y la capacidad de resolver en condiciones exigentes.
 
 Manifestación del arquetipo en la marca:
-Driven aparece como una marca directa: muestra producto, uso y motivo de compra. La pieza ideal no promete transformación abstracta; deja claro qué se puede resolver con ese producto. La estética debe combinar producto protagonista, información limpia y señales de compra confiable.
+Driven se expresa en ruta, ripio, campamento, taller y situaciones donde el usuario pone el equipo a prueba. La marca no necesita verse lujosa: necesita verse preparada. La imagen debe mostrar producto real, manos, materiales, polvo, metal, fuego, agua, carga, uso y contexto argentino genuino.
 
-Personalidad narrativa: Persona práctica, de 30-40 años, habla claro, recomienda sin exagerar, muestra el producto en uso y responde rápido. No se pone solemne ni técnica cuando puede explicar simple.
+Personalidad narrativa: Persona directa, práctica, de 35-45 años, usa el equipo de verdad, habla con vos, sabe de producto sin ponerse soberbia y transmite confianza sin vender humo.
 
 Tono de voz:
-  - Directo — dice qué es, para qué sirve y cómo comprar.
-  - Útil — prioriza beneficio concreto sobre adjetivo aspiracional.
-  - Cercano — usa lenguaje cotidiano y evita jerga.
-  - Comercial disciplinado — puede vender, pero sin gritar ni saturar.
+  - Directo — dice qué es, para qué sirve y por qué conviene.
+  - Experto — aporta especificación o evidencia cuando hace falta.
+  - Cercano — habla en español argentino con vos, sin solemnidad.
+  - Funcional-emocional — 70% utilidad, 30% confianza/tranquilidad.
+  - Seguro — no exagera ni necesita gritar urgencia.
 
 Directivas para generación de contenido:
-  - Siempre: mostrar producto, uso o beneficio concreto.
-  - Siempre: incluir CTA claro y accionable.
-  - Siempre: distinguir B2C y B2B cuando el brief lo requiera.
-  - Nunca: inventar precios, stock, envíos, descuentos o marcas representadas.
-  - Nunca: usar tono lujo premium si el diferencial es utilidad y resolución.
+  - Siempre: reforzar calidad real + respaldo argentino.
+  - Siempre: mostrar producto, uso real o beneficio concreto.
+  - Siempre: recordar garantía/servicio local cuando aplique y esté validado.
+  - Siempre: separar comunicación B2C, B2B y comunidad.
+  - Nunca: inventar precios, stock, envíos, plazos, cuotas o cobertura de garantía.
+  - Nunca: usar superlativos vacíos, lujo minimalista, modelos profesionales o stock genérico.
+  - Nunca: prometer atención humana inmediata en web/WhatsApp.
 
 Palabras clave de marca:
-  equipate, resolvé, catálogo, producto, disponibilidad, oferta, compra simple, útil
+  equipate, te banca, uso real, calidad de verdad, hecho para usar, robusto, reforzado, confiable, respaldo argentino, comunidad, vamos más allá, probado
 
 Lo que la marca NO es:
-  - NO es aspiracional vacío / SI es compra útil y directa
-  - NO es catálogo caótico / SI es selección clara
-  - NO es promo agresiva / SI es oportunidad explicada
+  - NO es lifestyle aspiracional vacío / SI es outdoor argentino genuino
+  - NO es lujo minimalista / SI es equipamiento robusto y usable
+  - NO es promo agresiva / SI es compra con motivo claro
+  - NO es tech corporativo / SI es ruta, taller, campamento y comunidad
 
-Vocabulario visual canónico (Opcional — base inicial pendiente de assets reales):
+Vocabulario visual canónico (Opcional — base inicial hasta cargar assets reales):
   Léxico narrativo recurrente — palabras-imagen que activan el ADN visual de la marca en cualquier brief de creatividad:
-  - Anchors propios: producto héroe, etiqueta de precio, caja de envío, pantalla de catálogo, mano usando producto
-  - Geografía: contexto cotidiano argentino, interior de casa, comercio, viaje corto, plan de fin de semana
-  - Texturas: plástico mate, metal, tela técnica, cartón de envío, fondo limpio
-  - Luces: luz de ecommerce clara, daylight neutro, sombra suave
-  - Iconografía: carrito, WhatsApp, etiqueta, check de stock, rayo de oferta
-  - Ángulos: producto frontal, 3/4, detalle macro, uso en mano
+  - Anchors propios: producto héroe, sello 2 años garantía, Comunidad Driven, Argentine Adventure, Estrella del Sur, Big Boy, Flamate, Red Force, Bidón 15L
+  - Geografía: ruta argentina, ripio, Patagonia, Ruta 40, Pergamino, campamento, taller, garage
+  - Texturas: metal, plástico mate, lona, polvo, barro, goma, fuego, madera, cartón de envío
+  - Luces: luz natural, luz de taller, fogón, daylight neutro, contraste medio
+  - Iconografía: garantía, envío, cuotas, comunidad, herramienta, ruta, check de respaldo
+  - Ángulos: producto frontal 1:1, detalle macro de materiales, gran angular en uso real, mano usando producto
+
+Datos pendientes que bloquean copy con promesas:
+  - Cobertura exacta de garantía.
+  - Días y condiciones de devolución.
+  - Quién paga retorno y si se devuelve dinero o crédito.
+  - Plazos de envío por zona.
+  - Qué tarjetas aplican para 6 cuotas.
+  - Vigencia del 10% OFF.
+  - URLs de Términos y Condiciones / Privacidad.
+  - Confirmación de Facundo Arana como referente comunicable.
 $ana_ficha$,
   '{}'::jsonb,
   1
@@ -319,13 +429,15 @@ insert into public.brand_ficha_versions (brand_id, version, content, format_meta
 select brand_id, 1, content, format_meta
 from public.brand_fichas
 where brand_id = (select id from public.brands where code = 'DRV')
-on conflict (brand_id, version) do nothing;
+on conflict (brand_id, version) do update set
+  content = excluded.content,
+  format_meta = excluded.format_meta;
 
 insert into public.creatives (id, brand_id, kind, status, format, title, headline, subhead, copy, caption, visual_cue, palette, tags, pipeline)
 values
-  (701, (select id from public.brands where code = 'DRV'), 'cover', 'para revision', 'Feed 4:5', 'Producto héroe', 'Equipate para todo.', 'Producto claro. Compra simple.', 'Una pieza base para mostrar producto, beneficio y CTA sin humo.', 'Driven necesita que cada publicación responda rápido: qué es, para qué sirve y cómo comprar.', 'Producto protagonista sobre fondo limpio, etiqueta de precio discreta, icono de WhatsApp y CTA directo.', '#1D3557', array['Producto','Ecommerce','Base'], '[{"title":"Idea","body":"Crear template de producto héroe para cargar catálogo real de Driven."},{"title":"Ancla en ficha","body":"DIM-03 posicionamiento: compra clara. DIM-12 tono directo y útil."},{"title":"Pendiente","body":"Reemplazar producto mock por foto real, precio y disponibilidad."}]'::jsonb),
-  (702, (select id from public.brands where code = 'DRV'), 'carrusel', 'borrador', 'Carrusel', 'Cómo elegir', 'No compres a ciegas.', 'Tres datos antes de decidir.', 'Uso, medida y disponibilidad. Si esos tres datos están claros, la compra avanza.', 'Carrusel educativo para bajar dudas y ordenar el catálogo.', 'Tres placas limpias: uso real, detalle técnico, CTA final hacia catálogo.', '#2A9D8F', array['Educativo','Catálogo','Conversión'], '[{"title":"Idea","body":"Bajar objeción de compra explicando criterios simples."},{"title":"Ancla en ficha","body":"DIM-05 cliente que quiere resolver rápido."},{"title":"Pendiente","body":"Definir categoría inicial del catálogo."}]'::jsonb),
-  (703, (select id from public.brands where code = 'DRV'), 'ugc', 'borrador', 'Story 9:16', 'Consulta por WhatsApp', '¿Hay stock?', 'Te lo confirmamos antes de comprar.', 'UGC simple: alguien muestra el producto, pregunta disponibilidad y cierra por WhatsApp.', 'Para productos donde la duda frena la compra.', 'Persona grabando con celular, producto en mano, overlay manuscrito con pregunta real.', '#E9C46A', array['UGC','WhatsApp','Objeción'], '[{"title":"Concepto UGC","body":"Convertir una duda común en mecanismo de confianza."},{"title":"Ancla en ficha","body":"DIM-05 objeción: no sé si hay stock."},{"title":"Pendiente","body":"Cargar teléfono/WhatsApp real."}]'::jsonb)
+  (701, (select id from public.brands where code = 'DRV'), 'cover', 'para revision', 'Feed 4:5', 'Big Boy uso real', 'EQUIPATE PARA TODO.', 'Te banca en el uso real.', 'Una pieza base para presentar producto real, respaldo argentino y CTA sin prometer stock/precio.', 'Compresor Big Boy como producto héroe: ruta, garage y respaldo local. Falta cargar foto real, precio vigente y URL.', 'Compresor protagonista sobre fondo verde oscuro, textura de ruta/garage, sello 2 años garantía y CTA Equipate.', '#1F2A24', array['Producto','4x4','Garantía'], '[{"title":"Idea","body":"Crear template de producto héroe para Big Boy y línea 4x4."},{"title":"Ancla en ficha","body":"DIM-03 posicionamiento: calidad real + respaldo argentino. DIM-05 Overlander Pro."},{"title":"Pendiente","body":"Reemplazar placeholder por foto real, precio SAP y URL de compra."}]'::jsonb),
+  (702, (select id from public.brands where code = 'DRV'), 'carrusel', 'borrador', 'Carrusel', 'Elegí con datos', 'ELEGÍ CON DATOS.', 'Uso, specs y respaldo.', 'Uso real, especificación clara y garantía validada. Tres datos para comprar mejor.', 'Carrusel educativo para bajar objeciones sin atacar competencia ni inventar promesas.', 'Tres placas: uso real, detalle técnico, respaldo local; estética beige/verde con producto recortado.', '#A07D5D', array['Educativo','Specs','Objeción'], '[{"title":"Idea","body":"Bajar objeción ¿aguanta uso real? con datos simples."},{"title":"Ancla en ficha","body":"DIM-05 Overlander Pro + Hobbista del Garage."},{"title":"Pendiente","body":"Definir producto/categoría y specs exactas."}]'::jsonb),
+  (703, (select id from public.brands where code = 'DRV'), 'ugc', 'borrador', 'Story 9:16', 'Uso en garage', 'LISTO PARA USAR.', 'Probalo en tu taller.', 'UGC simple: una mano muestra el producto en garage real y remarca robustez sin promesas no validadas.', 'Para hobbistas del garage: especificación visible, uso real y CTA corto.', 'Celular vertical, mano usando producto en taller, anotaciones sobrias en amarillo industrial.', '#F5C518', array['UGC','Garage','Uso real'], '[{"title":"Concepto UGC","body":"Convertir el uso real en prueba de robustez."},{"title":"Ancla en ficha","body":"DIM-05 Hobbista del Garage: de dependiente a autosuficiente."},{"title":"Pendiente","body":"Cargar producto real y validar specs."}]'::jsonb)
 on conflict (id) do update set
   status = excluded.status,
   title = excluded.title,
@@ -341,9 +453,9 @@ on conflict (id) do update set
 
 insert into public.ideas (id, brand_id, status, title, category, skill, trigger, phrases, anchor, notes, sort_order)
 values
-  ('D1', (select id from public.brands where code = 'DRV'), 'usada', 'Producto héroe base', 'Producto', 'S8 - oferta comercial', 'Crear primera cover de producto para que Driven no arranque vacío.', array['Equipate para todo.','Producto claro. Compra simple.','Lo que necesitás, listo para salir.'], 'DIM-03 posicionamiento + DIM-12 tono directo', 'Funciona como molde editable hasta importar catálogo real.', 1),
-  ('D2', (select id from public.brands where code = 'DRV'), 'disponible', 'No compres a ciegas', 'Objeción', 'S5 - buyer persona', 'Atacar la duda de compra con datos simples: uso, medida y disponibilidad.', array['No compres a ciegas.','Tres datos antes de decidir.','Si está claro, se compra mejor.'], 'DIM-05 Persona 1 · cliente que quiere resolver rápido', 'Ideal para carrusel educativo por categoría.', 2),
-  ('D3', (select id from public.brands where code = 'DRV'), 'disponible', 'Quiero precio mayorista', 'B2B', 'S11 - CTA validado', 'Abrir puerta B2B sin inventar condiciones comerciales todavía.', array['Quiero precio mayorista.','Armá tu pedido.','Catálogo claro para vender mejor.'], 'DIM-05 Persona 3 · revendedor / comprador B2B', 'Se completa cuando llegue el Supabase Driven con listas y condiciones.', 3)
+  ('D1', (select id from public.brands where code = 'DRV'), 'usada', 'Big Boy uso real', '4x4', 'S8 - oferta comercial', 'Crear primera cover de producto para Big Boy: compresor, ruta, garage y respaldo local.', array['EQUIPATE PARA TODO.','Te banca en el uso real.','Listo para la ruta.'], 'DIM-03 calidad real + DIM-05 Overlander Pro', 'Funciona como molde editable hasta cargar foto real, precio SAP y URL.', 1),
+  ('D2', (select id from public.brands where code = 'DRV'), 'disponible', 'Elegí con datos', 'Objeción', 'S5 - buyer persona', 'Atacar la duda ¿aguanta uso real? con specs, materiales, garantía y contexto.', array['ELEGÍ CON DATOS.','Uso, specs y respaldo.','Hecho para usar.'], 'DIM-05 Overlander Pro + Hobbista del Garage', 'Ideal para carrusel educativo por producto/categoría.', 2),
+  ('D3', (select id from public.brands where code = 'DRV'), 'disponible', 'Comunidad Driven', 'Comunidad', 'S12 - tono', 'Mostrar que la marca vive en usuarios reales: ruta, campamento, garage, salida y prueba.', array['SUMATE A LA COMUNIDAD.','Vamos más allá.','Probado en uso real.'], 'DIM-12 Explorer + DIM-06 comunidad/respaldo', 'Usar sin modelos profesionales ni stock genérico.', 3)
 on conflict (brand_id, id) do update set
   status = excluded.status,
   title = excluded.title,
@@ -357,9 +469,10 @@ on conflict (brand_id, id) do update set
 
 insert into public.requirements (id, brand_id, date_label, status, title, detail, asset)
 values
-  (101, (select id from public.brands where code = 'DRV'), '27-may, 22:45', 'pendiente', 'Importar datos reales de Supabase Driven', 'Faltan tablas/export del Supabase original para traer catálogo, productos, usuarios y reglas comerciales.', 'DB'),
-  (102, (select id from public.brands where code = 'DRV'), '27-may, 22:45', 'pendiente', 'Validar ficha 12D base', 'La ficha inicial está marcada con pendientes para no inventar datos factuales.', '12D'),
-  (103, (select id from public.brands where code = 'DRV'), '27-may, 22:45', 'pendiente', 'Subir assets de producto', 'Cargar logo, fotos de productos héroe, precios vigentes y URLs de compra.', 'IMG')
+  (101, (select id from public.brands where code = 'DRV'), '28-may, 00:15', 'pendiente', 'Validar datos comerciales críticos', 'Cobertura de garantía, devoluciones, plazos por zona, tarjetas de 6 cuotas, vigencia 10% OFF, TyC/Privacidad y Facundo Arana.', '8'),
+  (102, (select id from public.brands where code = 'DRV'), '28-may, 00:15', 'pendiente', 'Subir logos Driven', 'Faltan logo original, logo white-knockout, logo black-knockout e isotipo si existe.', 'LOGO'),
+  (103, (select id from public.brands where code = 'DRV'), '28-may, 00:15', 'pendiente', 'Subir assets de producto', 'Prioridad: Big Boy, Flamate, Red Force, Bidón 15L, Argentine Adventure y Estrella del Sur.', 'IMG'),
+  (104, (select id from public.brands where code = 'DRV'), '28-may, 00:15', 'pendiente', 'Importar catálogo/SAP', 'Sin SKU, precio, stock y URL no se deben publicar piezas comerciales con promesas concretas.', 'SAP')
 on conflict (id) do update set
   brand_id = excluded.brand_id,
   status = excluded.status,
@@ -371,8 +484,8 @@ select setval(pg_get_serial_sequence('public.requirements','id'), greatest((sele
 
 insert into public.publications (id, brand_id, creative_id, date, day, time, channel, format, status, title)
 values
-  (701, (select id from public.brands where code = 'DRV'), 701, '2026-06-03', 3, '10:00', 'Instagram', 'Feed 4:5', 'borrador', 'Producto héroe base'),
-  (702, (select id from public.brands where code = 'DRV'), 702, '2026-06-06', 6, '12:00', 'Instagram', 'Carrusel', 'borrador', 'No compres a ciegas')
+  (701, (select id from public.brands where code = 'DRV'), 701, '2026-06-03', 3, '10:00', 'Instagram', 'Feed 4:5', 'borrador', 'Big Boy uso real'),
+  (702, (select id from public.brands where code = 'DRV'), 702, '2026-06-06', 6, '12:00', 'Instagram', 'Carrusel', 'borrador', 'Elegí con datos')
 on conflict (id) do update set
   creative_id = excluded.creative_id,
   date = excluded.date,
@@ -385,11 +498,11 @@ on conflict (id) do update set
 
 insert into public.audit_items (code, brand_id, title, status, category, note)
 values
-  ('M1', (select id from public.brands where code = 'DRV'), 'Ficha 12D base creada', 'aplicado', 'Marca', 'Existe una ficha editable para empezar a trabajar sin esperar el import.'),
-  ('M2', (select id from public.brands where code = 'DRV'), 'Datos factuales pendientes', 'critico', 'Marca', 'Razón social, contacto, cobertura, precios, catálogo y condiciones deben venir del cliente o Supabase Driven.'),
-  ('C1', (select id from public.brands where code = 'DRV'), 'Primeras ideas creadas', 'aplicado', 'Contenido', 'Producto héroe, objeción de compra y B2B mayorista.'),
-  ('P1', (select id from public.brands where code = 'DRV'), 'Falta catálogo real', 'critico', 'Performance', 'Sin productos reales no se puede medir conversión ni publicar campañas reales.'),
-  ('X1', (select id from public.brands where code = 'DRV'), 'Requerimientos activos', 'pendiente', 'Conversión', 'El tablero ya muestra qué falta pedir para completar la marca.')
+  ('M1', (select id from public.brands where code = 'DRV'), 'Ficha Driven 12D actualizada', 'aplicado', 'Marca', 'Ya incluye razón social, sede, canales, arquetipo Explorer y buyer personas.'),
+  ('M2', (select id from public.brands where code = 'DRV'), 'Promesas comerciales pendientes', 'critico', 'Marca', 'Garantía exacta, devoluciones, plazos, tarjetas, vigencia 10% OFF y Facundo Arana siguen pendientes.'),
+  ('C1', (select id from public.brands where code = 'DRV'), 'Ideas alineadas a outdoor real', 'aplicado', 'Contenido', 'Big Boy, uso real, datos técnicos y Comunidad Driven.'),
+  ('P1', (select id from public.brands where code = 'DRV'), 'Falta catálogo/SAP', 'critico', 'Performance', 'Sin SKU, precios, stock y URLs no se publican campañas con promesa comercial.'),
+  ('X1', (select id from public.brands where code = 'DRV'), 'Assets críticos pendientes', 'pendiente', 'Conversión', 'Logo 3 variantes + productos héroe + premios/sponsor.')
 on conflict (brand_id, code) do update set
   title = excluded.title,
   status = excluded.status,
