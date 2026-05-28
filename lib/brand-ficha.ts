@@ -8,6 +8,7 @@ export type BrandFichaSection = {
 };
 
 export type BrandFicha = {
+  raw: string;
   title: string;
   subtitle?: string;
   generatedBy?: string;
@@ -66,6 +67,7 @@ export function parseBrandFicha(raw: string): BrandFicha {
   }
 
   return {
+    raw,
     ...header,
     sections,
     pendingCount: countMatches(raw, /(pendiente|verificar vigencia|requiere validar|requiere insumo)/gi),
@@ -74,7 +76,7 @@ export function parseBrandFicha(raw: string): BrandFicha {
   };
 }
 
-function parseHeader(rawHeader: string): Omit<BrandFicha, "sections" | "pendingCount" | "referenceCount" | "format"> {
+function parseHeader(rawHeader: string): Omit<BrandFicha, "raw" | "sections" | "pendingCount" | "referenceCount" | "format"> {
   const lines = rawHeader
     .split(/\r?\n/)
     .map((line) => line.trim())
@@ -148,6 +150,7 @@ function inspectFichaFormat(raw: string, sections: BrandFichaSection[]): BrandFi
 
 function emptyBrandFicha(): BrandFicha {
   return {
+    raw: "",
     title: "FICHA DE MARCA INTEGRAL",
     sources: [],
     sections: [],

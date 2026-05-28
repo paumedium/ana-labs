@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getAuditItems, getBrand, type AuditItem } from "@/lib/mock-data";
+import { getAuditItems, getBrand, type AuditItem } from "@/lib/data";
 import { SiteHeader } from "@/components/site-header";
 
 const statusClass: Record<AuditItem["status"], string> = {
@@ -10,10 +10,10 @@ const statusClass: Record<AuditItem["status"], string> = {
 
 export default async function AnalisisPage({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params;
-  const brand = getBrand(code);
+  const brand = await getBrand(code);
   if (!brand) notFound();
 
-  const items = getAuditItems(code);
+  const items = await getAuditItems(code);
   const score = 72;
   const critical = items.filter((item) => item.status === "critico").length;
   const pending = items.filter((item) => item.status === "pendiente").length;

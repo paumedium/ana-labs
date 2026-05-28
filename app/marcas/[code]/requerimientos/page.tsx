@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { getBrand, getRequirements, type Requirement } from "@/lib/mock-data";
+import { createRequirement } from "@/lib/actions";
+import { getBrand, getRequirements, type Requirement } from "@/lib/data";
 import { SiteHeader } from "@/components/site-header";
 
 const statusClass: Record<Requirement["status"], string> = {
@@ -9,10 +10,10 @@ const statusClass: Record<Requirement["status"], string> = {
 
 export default async function RequerimientosPage({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params;
-  const brand = getBrand(code);
+  const brand = await getBrand(code);
   if (!brand) notFound();
 
-  const requirements = getRequirements(code);
+  const requirements = await getRequirements(code);
   const pending = requirements.filter((item) => item.status === "pendiente");
   const resolved = requirements.filter((item) => item.status === "resuelto");
 
@@ -34,27 +35,27 @@ export default async function RequerimientosPage({ params }: { params: Promise<{
 
         <div className="grid gap-8 lg:grid-cols-[380px_1fr]">
           <section className="h-fit border border-line bg-paper-soft p-5">
-            <div className="mb-5 border border-[var(--amber)] bg-[#fffaf0] p-3 text-sm text-ink-soft">
-              Envío pendiente de backend: por ahora este panel funciona como checklist visible para el equipo y cliente.
+            <div className="mb-5 border border-[var(--green)] bg-[#f2fff7] p-3 text-sm text-ink-soft">
+              Los requerimientos se guardan en Supabase y quedan visibles para el equipo.
             </div>
-            <div className="space-y-4">
+            <form action={createRequirement.bind(null, brand.code)} className="space-y-4">
               <label className="block">
                 <span className="eyebrow mb-2 block">¿Qué necesitás?</span>
-                <input className="w-full border border-line bg-paper px-3 py-2 text-sm" placeholder="Ej: subir fotos de la medalla" />
+                <input name="title" className="w-full border border-line bg-paper px-3 py-2 text-sm" placeholder="Ej: subir fotos de la medalla" required />
               </label>
               <label className="block">
                 <span className="eyebrow mb-2 block">Detalle (opcional)</span>
-                <textarea className="h-28 w-full border border-line bg-paper px-3 py-2 text-sm" placeholder="Contexto, referencias, qué importa que sepamos..." />
+                <textarea name="detail" className="h-28 w-full border border-line bg-paper px-3 py-2 text-sm" placeholder="Contexto, referencias, qué importa que sepamos..." />
               </label>
               <label className="block">
-                <span className="eyebrow mb-2 block">Imágenes (opcional)</span>
-                <div className="border border-line bg-paper px-3 py-2 text-sm">Elegir archivos · sin archivos seleccionados</div>
-                <div className="mono mt-1 text-[10px] text-muted">Hasta 5 imágenes JPG/PNG/WebP, máx 5 MB c/u.</div>
+                <span className="eyebrow mb-2 block">Código de asset (opcional)</span>
+                <input name="asset" className="w-full border border-line bg-paper px-3 py-2 text-sm" placeholder="Ej: IMG, PV, $" />
+                <div className="mono mt-1 text-[10px] text-muted">La subida de archivos reales queda para el módulo assets.</div>
               </label>
-              <button className="mono w-full border border-line bg-ink px-4 py-3 text-[11px] uppercase text-paper opacity-50" aria-disabled="true">
-                Envío pendiente
+              <button className="mono w-full border border-line bg-ink px-4 py-3 text-[11px] uppercase text-paper" type="submit">
+                Crear requerimiento
               </button>
-            </div>
+            </form>
           </section>
 
           <section className="grid auto-rows-fr gap-4 md:grid-cols-2 xl:grid-cols-3">

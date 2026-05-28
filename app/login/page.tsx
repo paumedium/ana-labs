@@ -1,6 +1,18 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { getCurrentUser } from "@/lib/auth";
+import { signIn, signUp } from "./actions";
 
-export default function LoginPage() {
+type LoginSearchParams = Promise<{ error?: string | string[]; message?: string | string[] }>;
+
+export default async function LoginPage({ searchParams }: { searchParams: LoginSearchParams }) {
+  const user = await getCurrentUser();
+  if (user) redirect("/marcas");
+
+  const query = await searchParams;
+  const error = Array.isArray(query.error) ? query.error[0] : query.error;
+  const message = Array.isArray(query.message) ? query.message[0] : query.message;
+
   return (
     <div className="flex-1 flex flex-col items-center justify-center px-6 py-16">
       <div className="max-w-sm w-full text-center">
@@ -15,10 +27,13 @@ export default function LoginPage() {
         <p className="text-sm text-muted mb-10">
           Plataforma exclusiva para clientes Ana Labs.
           <br />
-          Si tu correo está registrado, recibirás un enlace de acceso.
+          Ingresá con tu correo y contraseña de acceso.
         </p>
 
-        <form action="/marcas" className="space-y-4">
+        {error && <div className="mb-5 border border-[var(--red)] bg-[#fff6f4] p-3 text-left text-sm text-[var(--red)]">{error}</div>}
+        {message && <div className="mb-5 border border-[var(--green)] bg-[#f2fff7] p-3 text-left text-sm text-[var(--green)]">{message}</div>}
+
+        <form className="space-y-4">
           <div className="text-left">
             <label htmlFor="email" className="eyebrow block mb-2">
               Correo de acceso
@@ -29,13 +44,36 @@ export default function LoginPage() {
               type="email"
               placeholder="tu@empresa.com"
               className="w-full px-4 py-3 border border-line rounded bg-paper-soft text-ink placeholder:text-muted/50 focus:outline-none focus:border-ink"
+              required
+            />
+          </div>
+          <div className="text-left">
+            <label htmlFor="password" className="eyebrow block mb-2">
+              Contraseña
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="••••••••"
+              className="w-full px-4 py-3 border border-line rounded bg-paper-soft text-ink placeholder:text-muted/50 focus:outline-none focus:border-ink"
+              required
+              minLength={6}
             />
           </div>
           <button
             type="submit"
+            formAction={signIn}
             className="w-full py-3 bg-paper-soft border border-line rounded mono text-xs tracking-[0.12em] uppercase text-ink-soft hover:bg-ink hover:text-paper hover:border-ink transition"
           >
-            Enviar enlace
+            Ingresar
+          </button>
+          <button
+            type="submit"
+            formAction={signUp}
+            className="w-full py-3 border border-line rounded mono text-xs tracking-[0.12em] uppercase text-muted hover:border-ink hover:text-ink transition"
+          >
+            Crear acceso
           </button>
         </form>
 

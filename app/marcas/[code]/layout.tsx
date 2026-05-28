@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getBrand } from "@/lib/mock-data";
+import { getBrand } from "@/lib/data";
 import { SiteFooter } from "@/components/site-footer";
 
 export default async function BrandLayout({
@@ -10,7 +10,7 @@ export default async function BrandLayout({
   params: Promise<{ code: string }>;
 }) {
   const { code } = await params;
-  const brand = getBrand(code);
+  const brand = await getBrand(code);
   if (!brand) notFound();
 
   return (

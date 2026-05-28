@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { brands, getBrandUsers, stats, type Brand } from "@/lib/mock-data";
+import { getBrands, getBrandUsers, getStats, type Brand, type BrandUser } from "@/lib/data";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
-export default function MarcasPage() {
+export default async function MarcasPage() {
+  const brands = await getBrands();
   const selected = brands[0];
-  const users = selected ? getBrandUsers(selected.code) : [];
+  const users = selected ? await getBrandUsers(selected.code) : [];
+  const stats = await getStats();
 
   return (
     <>
@@ -57,7 +59,7 @@ export default function MarcasPage() {
   );
 }
 
-function BrandDetail({ brand, users }: { brand: Brand; users: ReturnType<typeof getBrandUsers> }) {
+function BrandDetail({ brand, users }: { brand: Brand; users: BrandUser[] }) {
   return (
     <section className="border border-line bg-paper">
       <div className="flex flex-wrap items-start justify-between gap-4 border-b border-line p-6">

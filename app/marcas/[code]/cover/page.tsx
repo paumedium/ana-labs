@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
-import { getBrand, getCreativePieces, type Brand, type CreativePiece } from "@/lib/mock-data";
+import { getBrand, getCreativePieces, type Brand, type CreativePiece } from "@/lib/data";
+import { updateCreativeStatus } from "@/lib/actions";
 
 type CoverSearchParams = Promise<{ piece?: string | string[]; skill?: string | string[] }>;
 
@@ -112,10 +113,10 @@ export default async function CoverPage({
   searchParams: CoverSearchParams;
 }) {
   const [{ code }, query] = await Promise.all([params, searchParams]);
-  const brand = getBrand(code);
+  const brand = await getBrand(code);
   if (!brand) notFound();
 
-  const pieces = getCreativePieces(code);
+  const pieces = await getCreativePieces(code);
   const selectedId = firstParam(query.piece);
   const showSkill = firstParam(query.skill) === "1";
   const selectedIndex = Math.max(
@@ -396,10 +397,18 @@ function DetailsPanel({ brand, piece, showSkill }: { brand: Brand; piece: Creati
         </div>
 
         <div className="grid grid-cols-2 gap-2">
-          <ActionButton tone="ok">{piece.status === "aprobado" ? "Ya aprobada" : "Aprobar"}</ActionButton>
-          <ActionButton tone="warn">Editar observ.</ActionButton>
-          <ActionButton tone="info">Para publicar</ActionButton>
-          <ActionButton tone="danger">Eliminar</ActionButton>
+          <form action={updateCreativeStatus.bind(null, brand.code, piece.id, "aprobado")}>
+            <ActionButton tone="ok">{piece.status === "aprobado" ? "Ya aprobada" : "Aprobar"}</ActionButton>
+          </form>
+          <form action={updateCreativeStatus.bind(null, brand.code, piece.id, "observado")}>
+            <ActionButton tone="warn">Editar observ.</ActionButton>
+          </form>
+          <form action={updateCreativeStatus.bind(null, brand.code, piece.id, "para publicar")}>
+            <ActionButton tone="info">Para publicar</ActionButton>
+          </form>
+          <form action={updateCreativeStatus.bind(null, brand.code, piece.id, "borrador")}>
+            <ActionButton tone="danger">Borrador</ActionButton>
+          </form>
         </div>
 
         <div className="mt-4 grid grid-cols-2 gap-1">
@@ -467,7 +476,7 @@ function ActionButton({ children, tone }: { children: React.ReactNode; tone: "ok
   };
 
   return (
-    <button className={`mono min-h-9 border bg-paper px-3 py-2 text-[10px] uppercase hover:bg-paper-soft ${classes[tone]}`}>
+    <button type="submit" className={`mono min-h-9 w-full border bg-paper px-3 py-2 text-[10px] uppercase hover:bg-paper-soft ${classes[tone]}`}>
       {children}
     </button>
   );

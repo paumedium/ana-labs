@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getBrand, getCreativePieces, getPublications, type Brand, type Publication } from "@/lib/mock-data";
+import { getBrand, getCreativePieces, getPublications, type Brand, type Publication } from "@/lib/data";
 import { SiteHeader } from "@/components/site-header";
 
 const statusClass: Record<Publication["status"], string> = {
@@ -10,11 +10,11 @@ const statusClass: Record<Publication["status"], string> = {
 
 export default async function PublicacionesPage({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params;
-  const brand = getBrand(code);
+  const brand = await getBrand(code);
   if (!brand) notFound();
 
-  const posts = getPublications(code);
-  const pieces = getCreativePieces(code);
+  const posts = await getPublications(code);
+  const pieces = await getCreativePieces(code);
   const days = Array.from({ length: 35 }, (_, index) => index + 1);
   const activeChannels = brandChannels(brand.socials);
   const scheduledChannels = [...new Set(posts.map((post) => post.channel))];

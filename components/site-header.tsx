@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Brand } from "@/lib/mock-data";
+import type { Brand } from "@/lib/data";
 
 type Props = {
   brand?: Brand;

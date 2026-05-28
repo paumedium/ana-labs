@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getBrand, getIdeas, type Idea } from "@/lib/mock-data";
+import { getBrand, getIdeas, type Idea } from "@/lib/data";
 import { SiteHeader } from "@/components/site-header";
 
 const categoryClasses: Record<string, string> = {
@@ -11,10 +11,10 @@ const categoryClasses: Record<string, string> = {
 
 export default async function IdeasPage({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params;
-  const brand = getBrand(code);
+  const brand = await getBrand(code);
   if (!brand) notFound();
 
-  const ideas = getIdeas(code);
+  const ideas = await getIdeas(code);
 
   return (
     <>

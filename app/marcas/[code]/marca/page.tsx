@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getBrand, getBrandDimensions, type BrandDimension } from "@/lib/mock-data";
-import { getBrandFicha, type BrandFicha } from "@/lib/brand-ficha";
+import { saveBrandFicha } from "@/lib/actions";
+import { getBrand, getBrandDimensions, getBrandFichaByCode, type BrandDimension } from "@/lib/data";
+import { type BrandFicha } from "@/lib/brand-ficha";
 import { SiteHeader } from "@/components/site-header";
 
 const categories = ["Identidad y propósito", "Mercado y público", "Diferenciación y operación", "Comercial y digital", "Expresión y voz"];
@@ -17,11 +18,11 @@ export default async function MarcaPage({
 }) {
   const { code } = await params;
   const query = await searchParams;
-  const brand = getBrand(code);
+  const brand = await getBrand(code);
   if (!brand) notFound();
 
-  const dims = getBrandDimensions(code);
-  const ficha = await getBrandFicha(brand.slug);
+  const dims = await getBrandDimensions(code);
+  const ficha = await getBrandFichaByCode(code);
   const fichaSections = ficha.sections;
   const dimParam = Array.isArray(query.dim) ? query.dim[0] : query.dim;
   const skillParam = Array.isArray(query.skill) ? query.skill[0] : query.skill;
@@ -59,6 +60,29 @@ export default async function MarcaPage({
           </div>
 
           <FichaSnapshot ficha={ficha} dims={dims} />
+
+          <details className="mb-8 border border-line bg-paper-soft p-5">
+            <summary className="mono cursor-pointer text-[11px] uppercase text-muted">
+              Editar ficha completa
+            </summary>
+            <form action={saveBrandFicha.bind(null, brand.code)} className="mt-5 space-y-4">
+              <textarea
+                name="content"
+                defaultValue={ficha.raw}
+                className="h-[420px] w-full border border-line bg-paper p-4 font-mono text-xs leading-5 text-ink focus:outline-none focus:border-ink"
+                spellCheck={false}
+                required
+              />
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <p className="max-w-2xl text-xs text-muted">
+                  Guarda la ficha activa y crea una versión histórica. Mantener separadores y títulos 1-12.
+                </p>
+                <button className="mono border border-line bg-ink px-4 py-2 text-[10px] uppercase text-paper" type="submit">
+                  Guardar ficha
+                </button>
+              </div>
+            </form>
+          </details>
 
           <div className="space-y-6">
             {categories.map((category, index) => (
