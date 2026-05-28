@@ -54,8 +54,23 @@ type BrandFichaRow = {
   content: string;
 };
 
+let supabaseSchemaUnavailable = false;
+
 function fallbackAllowed() {
-  return canUseMockFallback();
+  return canUseMockFallback() || supabaseSchemaUnavailable;
+}
+
+function shouldUseMockForError(error: unknown) {
+  const maybeError = error as { code?: string; message?: string } | null;
+  const message = maybeError?.message ?? "";
+  const schemaMissing =
+    maybeError?.code === "PGRST205" ||
+    maybeError?.code === "42P01" ||
+    /Could not find the table/i.test(message) ||
+    /relation .* does not exist/i.test(message);
+
+  if (schemaMissing) supabaseSchemaUnavailable = true;
+  return fallbackAllowed();
 }
 
 async function getSupabaseOrNull() {
@@ -91,7 +106,7 @@ async function getBrandRow(code: string): Promise<BrandRow | null> {
     .maybeSingle();
 
   if (error) {
-    if (!fallbackAllowed()) throw error;
+    if (!shouldUseMockForError(error)) throw error;
     return null;
   }
 
@@ -108,7 +123,7 @@ export async function getBrands(): Promise<Brand[]> {
     .order("name", { ascending: true });
 
   if (error) {
-    if (fallbackAllowed()) return mockBrands;
+    if (shouldUseMockForError(error)) return mockBrands;
     throw error;
   }
 
@@ -134,7 +149,7 @@ export async function getBrandUsers(code: string): Promise<BrandUser[]> {
     .order("created_at", { ascending: true });
 
   if (error) {
-    if (fallbackAllowed()) return getMockBrandUsers(code);
+    if (shouldUseMockForError(error)) return getMockBrandUsers(code);
     throw error;
   }
 
@@ -166,7 +181,7 @@ export async function getBrandFicha(slug: string, code?: string): Promise<BrandF
       .maybeSingle();
 
     if (!error && data) return parseBrandFicha((data as BrandFichaRow).content);
-    if (error && !fallbackAllowed()) throw error;
+    if (error && !shouldUseMockForError(error)) throw error;
   }
 
   if (fallbackAllowed()) {
@@ -210,7 +225,7 @@ export async function getCreativePieces(code: string): Promise<CreativePiece[]> 
     .order("id", { ascending: false });
 
   if (error) {
-    if (fallbackAllowed()) return getMockCreativePieces(code);
+    if (shouldUseMockForError(error)) return getMockCreativePieces(code);
     throw error;
   }
 
@@ -243,7 +258,7 @@ export async function getIdeas(code: string): Promise<Idea[]> {
     .order("sort_order", { ascending: true });
 
   if (error) {
-    if (fallbackAllowed()) return getMockIdeas(code);
+    if (shouldUseMockForError(error)) return getMockIdeas(code);
     throw error;
   }
 
@@ -272,7 +287,7 @@ export async function getRequirements(code: string): Promise<Requirement[]> {
     .order("id", { ascending: true });
 
   if (error) {
-    if (fallbackAllowed()) return getMockRequirements(code);
+    if (shouldUseMockForError(error)) return getMockRequirements(code);
     throw error;
   }
 
@@ -298,7 +313,7 @@ export async function getPublications(code: string): Promise<Publication[]> {
     .order("date", { ascending: true });
 
   if (error) {
-    if (fallbackAllowed()) return getMockPublications(code);
+    if (shouldUseMockForError(error)) return getMockPublications(code);
     throw error;
   }
 
@@ -327,7 +342,7 @@ export async function getAuditItems(code: string): Promise<AuditItem[]> {
     .order("code", { ascending: true });
 
   if (error) {
-    if (fallbackAllowed()) return getMockAuditItems(code);
+    if (shouldUseMockForError(error)) return getMockAuditItems(code);
     throw error;
   }
 
@@ -353,7 +368,7 @@ async function getAllRequirements() {
   if (!supabase) return Object.values(mockRequirements).flat();
 
   const { data, error } = await supabase.from("requirements").select("status");
-  if (error) return fallbackAllowed() ? Object.values(mockRequirements).flat() : [];
+  if (error) return shouldUseMockForError(error) ? Object.values(mockRequirements).flat() : [];
   return data as Pick<Requirement, "status">[];
 }
 
@@ -362,7 +377,7 @@ async function getAllBrandUsers() {
   if (!supabase) return Object.values(mockBrandUsers).flat();
 
   const { data, error } = await supabase.from("brand_members").select("email");
-  if (error) return fallbackAllowed() ? Object.values(mockBrandUsers).flat() : [];
+  if (error) return shouldUseMockForError(error) ? Object.values(mockBrandUsers).flat() : [];
   return data;
 }
 
