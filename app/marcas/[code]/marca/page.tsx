@@ -28,6 +28,7 @@ export default async function MarcaPage({
   const skillParam = Array.isArray(query.skill) ? query.skill[0] : query.skill;
   const selectedIndex = Math.max(0, dims.findIndex((dim) => dim.n === dimParam));
   const selected = dims[selectedIndex] ?? dims[0];
+  const selectedDimNumber = selected?.n ?? "01";
   const selectedFichaSection = fichaSections.find((section) => section.n === selected?.n);
   const completed = dims.filter((dim) => dim.status === "completa").length;
   const showSkill = skillParam === "1";
@@ -43,7 +44,7 @@ export default async function MarcaPage({
               <h1 className="text-4xl font-semibold">
                 FICHA DE MARCA
                 <Link
-                  href={`/marcas/${brand.code}/marca?dim=${selected.n}${showSkill ? "" : "&skill=1"}`}
+                  href={`/marcas/${brand.code}/marca?dim=${selectedDimNumber}${showSkill ? "" : "&skill=1"}`}
                   className="mono ml-3 inline-block border border-line bg-paper-soft px-3 py-2 align-middle text-[10px] uppercase text-muted hover:border-ink hover:text-ink"
                 >
                   Skill
@@ -85,6 +86,11 @@ export default async function MarcaPage({
           </details>
 
           <div className="space-y-6">
+            {dims.length === 0 && (
+              <div className="border border-line bg-paper-soft p-5 text-sm text-muted">
+                Esta marca todavía no tiene ficha 12D cargada. Pegá el documento completo en &quot;Editar ficha completa&quot; y guardalo para activar las dimensiones.
+              </div>
+            )}
             {categories.map((category, index) => (
               <div key={category}>
                 <div className="mono mb-2 text-[10px] uppercase text-muted">{index + 1} · {category}</div>
@@ -115,7 +121,7 @@ export default async function MarcaPage({
           />
         )}
       </main>
-      {showSkill && <SkillDrawer brandCode={brand.code} selectedDim={selected.n} />}
+      {showSkill && <SkillDrawer brandCode={brand.code} selectedDim={selectedDimNumber} />}
     </>
   );
 }

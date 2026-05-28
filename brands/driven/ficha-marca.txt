@@ -1,0 +1,268 @@
+FICHA DE MARCA INTEGRAL — DRIVEN
+Equipate para todo
+12 dimensiones — Generado por Ana Labs — 2026-05-27
+Fuentes: datos existentes en Ana Labs mock-data.ts, dominio informado driven.com.ar, Supabase Driven pendiente de importación
+
+═══════════════════════════════════════
+1. IDENTIDAD CORPORATIVA
+═══════════════════════════════════════
+Nombre comercial: Driven
+Razón social: (Información pendiente — requiere insumo del cliente)
+Slogan: "Equipate para todo"
+Fundación: (Información pendiente — requiere insumo del cliente)
+Sede: Argentina (ciudad y provincia pendientes de validar)
+Gerente General: (Información pendiente — requiere insumo del cliente)
+Sector: ecommerce / retail / distribución de productos y equipamiento (pendiente validar con cliente)
+Alcance geográfico: operación digital con alcance nacional potencial; cobertura real pendiente de importar desde Supabase Driven.
+
+═══════════════════════════════════════
+2. PROPÓSITO
+═══════════════════════════════════════
+Misión: Ayudar a las personas a resolver sus compras de equipamiento con una experiencia simple, clara y confiable, reduciendo fricción entre necesidad, producto y entrega. (propuesta — pendiente validar)
+
+Visión: Convertirse en una marca digital de referencia para quienes buscan productos útiles, seleccionados y fáciles de comprar, con una operación ordenada detrás de cada venta. (propuesta — pendiente validar)
+
+Valores:
+  - Claridad — información de producto, precio y disponibilidad sin vueltas.
+  - Utilidad — cada producto debe resolver una necesidad concreta.
+  - Confianza — compra simple, canales visibles y seguimiento responsable.
+  - Ritmo comercial — campañas activas, oferta clara y respuesta rápida.
+
+═══════════════════════════════════════
+3. POSICIONAMIENTO ESTRATÉGICO
+═══════════════════════════════════════
+Definición: Driven es una marca comercial digital orientada a productos útiles y equipamiento, con comunicación directa y foco en conversión. (pendiente validar)
+
+Propuesta de valor: "Driven simplifica la compra de equipamiento: productos claros, oferta directa y una experiencia pensada para resolver."
+
+Propuesta por unidad:
+  - Ecommerce / tienda digital: compra directa, catálogo navegable y foco en disponibilidad.
+  - Campañas comerciales: productos destacados, bundles, lanzamientos y promociones de temporada.
+  - Atención por canales digitales: consultas rápidas, derivación a WhatsApp y seguimiento comercial.
+
+Elevator pitch: "Driven vende equipamiento útil para personas que quieren resolver una compra sin perder tiempo. La marca debe comunicar con claridad qué ofrece, por qué conviene y cómo comprar, usando piezas visuales simples, orientadas a producto y con CTAs directos."
+
+Claim principal: "Equipate para todo"
+
+Claims secundarios:
+  - "Lo que necesitás, listo para salir."
+  - "Productos útiles. Compra simple."
+  - "Elegí, consultá y resolvé."
+  - "Equipamiento claro para planes reales."
+
+Posición competitiva:
+                 Compra guiada / clara
+                         ↑
+              Driven     │   Tiendas digitales curadas
+                         │
+Oferta útil       ←──────┼──────→ Oferta aspiracional
+                         │
+ Catálogos masivos       │   Marcas lifestyle premium
+                         ↓
+                 Compra dispersa / genérica
+
+═══════════════════════════════════════
+4. ARQUITECTURA DE MARCA (Opcional)
+═══════════════════════════════════════
+Estructura: marca única en esta primera carga.
+
+Unidades posibles a validar:
+  - Tienda online: catálogo, producto destacado y compra directa.
+  - Mayorista / distribuidores: condiciones comerciales, listas y atención B2B. (pendiente validar)
+  - Contenido / social commerce: reels, covers, carruseles y UGC orientados a producto.
+
+Puntos de servicio:
+  - Web: driven.com.ar (pendiente validar URL final activa)
+  - Instagram: @driven.ar (pendiente validar)
+  - Facebook / TikTok: canales informados en mock-data.ts, pendientes de validar.
+
+═══════════════════════════════════════
+5. PÚBLICO OBJETIVO + BUYER PERSONAS
+═══════════════════════════════════════
+Segmentos:
+  - Comprador final digital — personas que buscan resolver una compra concreta con poca fricción.
+  - Comprador recurrente / fan de categoría — personas que siguen novedades, promociones y lanzamientos.
+  - Comprador B2B / revendedor — negocios o emprendedores que necesitan catálogo, precio y disponibilidad. (pendiente validar)
+
+[Persona 1] Cliente que quiere resolver rápido
+  Perfil: Hombre o mujer, 25-45 años, compra online desde el celular, compara precios y necesita entender rápido si el producto le sirve.
+  Dolor: Se pierde en catálogos largos, fichas poco claras o publicaciones que muestran estética pero no explican uso.
+  Anhelo: Encontrar el producto correcto, entender el beneficio y comprar sin vueltas.
+  Cambio emocional: Duda y comparación eterna → decisión clara y compra resuelta
+  Diferenciador que le importa: Producto explicado en lenguaje simple, foto clara, precio visible y CTA directo.
+  Objeciones:
+    "No sé si esto me sirve" → Mostrar uso concreto, medida, compatibilidad y situación real.
+    "Capaz lo consigo más barato" → Comunicar valor total: disponibilidad, atención y compra simple.
+    "No confío en la tienda" → Mostrar canales, políticas y señales de operación real.
+
+[Persona 2] Comprador de oportunidad
+  Perfil: 20-40 años, sigue redes, reacciona a ofertas y productos destacados, compra cuando entiende que hay conveniencia.
+  Dolor: Ve muchas promociones iguales y no sabe cuál vale la pena.
+  Anhelo: Encontrar una oportunidad concreta sin sentir que está cayendo en una promo vacía.
+  Cambio emocional: Promoción genérica → hallazgo útil con motivo para comprar hoy
+  Diferenciador que le importa: Oferta simple, producto protagonista y urgencia controlada.
+  Objeciones:
+    "¿Es una oferta real?" → Mostrar precio anterior / condición / beneficio con datos verificables.
+    "Lo pienso después" → CTA corto y recordatorio visual de utilidad.
+    "No era lo que buscaba" → Segmentar por situación de uso, no solo por producto.
+
+[Persona 3] Revendedor / comprador B2B
+  Perfil: Emprendedor, comercio o revendedor que necesita catálogo confiable, margen, stock y respuesta rápida. (pendiente validar)
+  Dolor: Pierde tiempo pidiendo listas, condiciones o stock en canales desordenados.
+  Anhelo: Tener proveedor claro, rápido y con material que facilite vender.
+  Cambio emocional: Proveedor incierto → catálogo ordenado y respuesta comercial
+  Diferenciador que le importa: Lista clara, condiciones visibles, assets de producto y atención por WhatsApp.
+  Objeciones:
+    "No sé si hay stock" → Confirmar disponibilidad antes de prometer.
+    "No tengo material para vender" → Entregar fotos, copies y argumentos por producto.
+    "Necesito condiciones" → Documentar mínimos, descuentos y logística. (pendiente validar)
+
+Resumen de campos estratégicos:
+  Persona 1: dolor=catálogo confuso | anhelo=resolver rápido | cambio=duda → decisión clara
+  Persona 2: dolor=promos iguales | anhelo=oportunidad útil | cambio=scroll → compra con motivo
+  Persona 3: dolor=proveedor desordenado | anhelo=catálogo confiable | cambio=incertidumbre → operación clara
+
+Beneficios tangibles:
+  - Catálogo digital editable y escalable.
+  - CTAs claros hacia web, WhatsApp o canal de compra.
+  - Creatividades por producto, oferta y temporada.
+
+Beneficios intangibles:
+  - Sensación de compra resuelta.
+  - Confianza por claridad operativa.
+  - Marca directa, útil y sin sobrepromesa.
+
+═══════════════════════════════════════
+6. DIFERENCIADORES
+═══════════════════════════════════════
+Operativos:
+  - Marca preparada para comunicación de catálogo, ofertas y productos destacados.
+  - Enfoque en conversión: cada pieza debe explicar qué comprar y por qué ahora.
+
+Tecnológicos / digitales:
+  - Presencia web informada: driven.com.ar (pendiente validar).
+  - Canales sociales informados: Instagram, Facebook y TikTok (pendiente validar).
+  - Base de datos histórica en Supabase Driven pendiente de importación.
+
+De servicio:
+  - Atención digital como parte central del recorrido de compra.
+  - Potencial de derivación a WhatsApp para consultas y cierre. (pendiente validar)
+
+De producto / oferta:
+  - Catálogo por categorías, productos héroe y campañas comerciales.
+  - Promociones y bundles posibles una vez importado el inventario real.
+
+Catálogo de assets disponibles:
+  - [logos: pendiente | producto: pendiente | lifestyle: pendiente | UGC: pendiente | catálogo: pendiente]
+
+═══════════════════════════════════════
+7. COBERTURA Y OPERACIÓN (Opcional)
+═══════════════════════════════════════
+Cobertura: (Información pendiente — requiere importación de Supabase Driven o validación del cliente)
+
+Canales operativos iniciales:
+  - Web: driven.com.ar (pendiente validar)
+  - Instagram: @driven.ar (pendiente validar)
+  - WhatsApp: (Información pendiente — requiere insumo del cliente)
+
+Horarios: (Información pendiente — requiere insumo del cliente)
+
+═══════════════════════════════════════
+8. OFERTA COMERCIAL
+═══════════════════════════════════════
+Servicios:
+  - Venta online de productos / equipamiento: catálogo digital con producto, precio, descripción, disponibilidad y CTA.
+    Condiciones: categorías, stock, medios de pago, envíos, cambios y garantías pendientes de validar.
+    Normativa: políticas comerciales y legales pendientes de cargar.
+    Tarifa: precios pendientes de importar desde catálogo real.
+  - Campañas por producto destacado: covers, carruseles y piezas UGC para explicar uso, beneficio y oferta.
+    Condiciones: requiere foto real, precio, SKU y disponibilidad.
+  - Comunicación mayorista / B2B: lista, condiciones comerciales y assets para revendedores. (pendiente validar)
+    Condiciones: mínimo de compra, margen y logística pendientes de validar.
+
+Procedimientos:
+  - Producto nuevo: cargar nombre, precio, foto, beneficio principal, objeción típica y CTA.
+  - Oferta: cargar precio vigente, fecha de inicio/fin y condición exacta.
+  - Requerimiento de campaña: cargar producto protagonista, objetivo comercial, canal y deadline.
+
+Marcas representadas: (Información pendiente — requiere insumo del cliente)
+
+═══════════════════════════════════════
+9. CIFRAS CLAVE (Opcional)
+═══════════════════════════════════════
+  - Productos activos: (Información pendiente — requiere importación de catálogo)
+  - Categorías: (Información pendiente — requiere importación de catálogo)
+  - Ticket promedio: (Información pendiente — requiere insumo del cliente)
+  - Canales activos: web, Instagram, Facebook, TikTok (pendiente validar)
+
+═══════════════════════════════════════
+10. CANALES Y ACTIVOS DIGITALES
+═══════════════════════════════════════
+Presencia digital:
+  Teléfono: (Información pendiente — requiere insumo del cliente)
+  WhatsApp: (Información pendiente — requiere insumo del cliente)
+  Instagram: @driven.ar (pendiente validar)
+  Facebook: driven.ar (pendiente validar)
+  Web: driven.com.ar (pendiente validar)
+  Tienda online: driven.com.ar (pendiente validar)
+  Portal clientes: (Información pendiente — requiere insumo del cliente)
+
+Soporte y atención:
+  Email contacto: (Información pendiente — requiere insumo del cliente)
+  Email especializado: (Información pendiente — requiere insumo del cliente)
+  Tiempo respuesta RRSS: (Información pendiente — requiere insumo del cliente)
+  Tiempo respuesta email: (Información pendiente — requiere insumo del cliente)
+  CRM/herramientas: Supabase Driven pendiente de importación.
+
+═══════════════════════════════════════
+11. CTAS VALIDADOS
+═══════════════════════════════════════
+  - Comprá online
+  - Consultá disponibilidad
+  - Pedilo por WhatsApp
+  - Ver catálogo
+  - Quiero precio mayorista
+  - Armá tu pedido
+  - Ver productos destacados
+  - Escribinos
+
+═══════════════════════════════════════
+12. PERSONALIDAD, ARQUETIPO Y TONO
+═══════════════════════════════════════
+Arquetipo Mark/Pearson: Everyman
+Justificación: La marca debe sentirse útil, cercana y orientada a resolver compras reales, no a construir distancia aspiracional. (pendiente validar)
+
+Manifestación del arquetipo en la marca:
+Driven aparece como una marca directa: muestra producto, uso y motivo de compra. La pieza ideal no promete transformación abstracta; deja claro qué se puede resolver con ese producto. La estética debe combinar producto protagonista, información limpia y señales de compra confiable.
+
+Personalidad narrativa: Persona práctica, de 30-40 años, habla claro, recomienda sin exagerar, muestra el producto en uso y responde rápido. No se pone solemne ni técnica cuando puede explicar simple.
+
+Tono de voz:
+  - Directo — dice qué es, para qué sirve y cómo comprar.
+  - Útil — prioriza beneficio concreto sobre adjetivo aspiracional.
+  - Cercano — usa lenguaje cotidiano y evita jerga.
+  - Comercial disciplinado — puede vender, pero sin gritar ni saturar.
+
+Directivas para generación de contenido:
+  - Siempre: mostrar producto, uso o beneficio concreto.
+  - Siempre: incluir CTA claro y accionable.
+  - Siempre: distinguir B2C y B2B cuando el brief lo requiera.
+  - Nunca: inventar precios, stock, envíos, descuentos o marcas representadas.
+  - Nunca: usar tono lujo premium si el diferencial es utilidad y resolución.
+
+Palabras clave de marca:
+  equipate, resolvé, catálogo, producto, disponibilidad, oferta, compra simple, útil
+
+Lo que la marca NO es:
+  - NO es aspiracional vacío / SI es compra útil y directa
+  - NO es catálogo caótico / SI es selección clara
+  - NO es promo agresiva / SI es oportunidad explicada
+
+Vocabulario visual canónico (Opcional — base inicial pendiente de assets reales):
+  Léxico narrativo recurrente — palabras-imagen que activan el ADN visual de la marca en cualquier brief de creatividad:
+  - Anchors propios: producto héroe, etiqueta de precio, caja de envío, pantalla de catálogo, mano usando producto
+  - Geografía: contexto cotidiano argentino, interior de casa, comercio, viaje corto, plan de fin de semana
+  - Texturas: plástico mate, metal, tela técnica, cartón de envío, fondo limpio
+  - Luces: luz de ecommerce clara, daylight neutro, sombra suave
+  - Iconografía: carrito, WhatsApp, etiqueta, check de stock, rayo de oferta
+  - Ángulos: producto frontal, 3/4, detalle macro, uso en mano

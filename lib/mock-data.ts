@@ -437,6 +437,65 @@ export const creativePieces: Record<string, CreativePiece[]> = {
       ],
     },
   ],
+  DRV: [
+    {
+      id: 701,
+      kind: "cover",
+      status: "para revision",
+      format: "Feed 4:5",
+      title: "Producto héroe",
+      headline: "Equipate para todo.",
+      subhead: "Producto claro. Compra simple.",
+      copy: "Una pieza base para mostrar producto, beneficio y CTA sin humo.",
+      caption: "Driven necesita que cada publicación responda rápido: qué es, para qué sirve y cómo comprar.",
+      visualCue: "Producto protagonista sobre fondo limpio, etiqueta de precio discreta, icono de WhatsApp y CTA directo.",
+      palette: "#1D3557",
+      tags: ["Producto", "Ecommerce", "Base"],
+      pipeline: [
+        { title: "Idea", body: "Crear template de producto héroe para cargar catálogo real de Driven." },
+        { title: "Ancla en ficha", body: "DIM-03 posicionamiento: compra clara. DIM-12 tono directo y útil." },
+        { title: "Pendiente", body: "Reemplazar producto mock por foto real, precio y disponibilidad." },
+      ],
+    },
+    {
+      id: 702,
+      kind: "carrusel",
+      status: "borrador",
+      format: "Carrusel",
+      title: "Cómo elegir",
+      headline: "No compres a ciegas.",
+      subhead: "Tres datos antes de decidir.",
+      copy: "Uso, medida y disponibilidad. Si esos tres datos están claros, la compra avanza.",
+      caption: "Carrusel educativo para bajar dudas y ordenar el catálogo.",
+      visualCue: "Tres placas limpias: uso real, detalle técnico, CTA final hacia catálogo.",
+      palette: "#2A9D8F",
+      tags: ["Educativo", "Catálogo", "Conversión"],
+      pipeline: [
+        { title: "Idea", body: "Bajar objeción de compra explicando criterios simples." },
+        { title: "Ancla en ficha", body: "DIM-05 cliente que quiere resolver rápido." },
+        { title: "Pendiente", body: "Definir categoría inicial del catálogo." },
+      ],
+    },
+    {
+      id: 703,
+      kind: "ugc",
+      status: "borrador",
+      format: "Story 9:16",
+      title: "Consulta por WhatsApp",
+      headline: "¿Hay stock?",
+      subhead: "Te lo confirmamos antes de comprar.",
+      copy: "UGC simple: alguien muestra el producto, pregunta disponibilidad y cierra por WhatsApp.",
+      caption: "Para productos donde la duda frena la compra.",
+      visualCue: "Persona grabando con celular, producto en mano, overlay manuscrito con pregunta real.",
+      palette: "#E9C46A",
+      tags: ["UGC", "WhatsApp", "Objeción"],
+      pipeline: [
+        { title: "Concepto UGC", body: "Convertir una duda común en mecanismo de confianza." },
+        { title: "Ancla en ficha", body: "DIM-05 objeción: no sé si hay stock." },
+        { title: "Pendiente", body: "Cargar teléfono/WhatsApp real." },
+      ],
+    },
+  ],
 };
 
 export const ideas: Record<string, Idea[]> = {
@@ -486,6 +545,41 @@ export const ideas: Record<string, Idea[]> = {
       notes: "Puede convertirse en carrusel institucional de Casa Sarria.",
     },
   ],
+  DRV: [
+    {
+      id: "D1",
+      status: "usada",
+      title: "Producto héroe base",
+      category: "Producto",
+      skill: "S8 - oferta comercial",
+      trigger: "Crear primera cover de producto para que Driven no arranque vacío.",
+      phrases: ["Equipate para todo.", "Producto claro. Compra simple.", "Lo que necesitás, listo para salir."],
+      anchor: "DIM-03 posicionamiento + DIM-12 tono directo",
+      notes: "Funciona como molde editable hasta importar catálogo real.",
+    },
+    {
+      id: "D2",
+      status: "disponible",
+      title: "No compres a ciegas",
+      category: "Objeción",
+      skill: "S5 - buyer persona",
+      trigger: "Atacar la duda de compra con datos simples: uso, medida y disponibilidad.",
+      phrases: ["No compres a ciegas.", "Tres datos antes de decidir.", "Si está claro, se compra mejor."],
+      anchor: "DIM-05 Persona 1 · cliente que quiere resolver rápido",
+      notes: "Ideal para carrusel educativo por categoría.",
+    },
+    {
+      id: "D3",
+      status: "disponible",
+      title: "Quiero precio mayorista",
+      category: "B2B",
+      skill: "S11 - CTA validado",
+      trigger: "Abrir puerta B2B sin inventar condiciones comerciales todavía.",
+      phrases: ["Quiero precio mayorista.", "Armá tu pedido.", "Catálogo claro para vender mejor."],
+      anchor: "DIM-05 Persona 3 · revendedor / comprador B2B",
+      notes: "Se completa cuando llegue el Supabase Driven con listas y condiciones.",
+    },
+  ],
 };
 
 export const requirements: Record<string, Requirement[]> = {
@@ -523,6 +617,32 @@ export const requirements: Record<string, Requirement[]> = {
       asset: "OK",
     },
   ],
+  DRV: [
+    {
+      id: 1,
+      date: "27-may, 22:45",
+      status: "pendiente",
+      title: "Importar datos reales de Supabase Driven",
+      detail: "Faltan tablas/export del Supabase original para traer catálogo, productos, usuarios y reglas comerciales.",
+      asset: "DB",
+    },
+    {
+      id: 2,
+      date: "27-may, 22:45",
+      status: "pendiente",
+      title: "Validar ficha 12D base",
+      detail: "La ficha inicial está marcada con pendientes para no inventar datos factuales.",
+      asset: "12D",
+    },
+    {
+      id: 3,
+      date: "27-may, 22:45",
+      status: "pendiente",
+      title: "Subir assets de producto",
+      detail: "Cargar logo, fotos de productos héroe, precios vigentes y URLs de compra.",
+      asset: "IMG",
+    },
+  ],
 };
 
 export const publications: Record<string, Publication[]> = {
@@ -533,6 +653,10 @@ export const publications: Record<string, Publication[]> = {
     { id: 592, date: "2026-06-13", day: 13, time: "20:15", channel: "Instagram", format: "Story 9:16", status: "borrador", title: "Bar de Pergamino", creativeId: 635 },
     { id: 585, date: "2026-06-18", day: 18, time: "10:00", channel: "LinkedIn", format: "Feed 4:5", status: "programada", title: "Vinotecas premium", creativeId: 631 },
     { id: 579, date: "2026-06-21", day: 21, time: "12:00", channel: "Instagram", format: "Story 9:16", status: "publicada", title: "La mesa espera", creativeId: 628 },
+  ],
+  DRV: [
+    { id: 701, date: "2026-06-03", day: 3, time: "10:00", channel: "Instagram", format: "Feed 4:5", status: "borrador", title: "Producto héroe base", creativeId: 701 },
+    { id: 702, date: "2026-06-06", day: 6, time: "12:00", channel: "Instagram", format: "Carrusel", status: "borrador", title: "No compres a ciegas", creativeId: 702 },
   ],
 };
 
@@ -546,6 +670,13 @@ export const auditItems: Record<string, AuditItem[]> = {
     { code: "S1", title: "Sin sitio web público de Casa Sarria", status: "pendiente", category: "SEO", note: "Por ahora Instagram + WhatsApp. SEO queda limitado." },
     { code: "P1", title: "Sin integraciones de publicación", status: "pendiente", category: "Performance", note: "La UI simula agenda; falta conectar Buffer/Zernio/Meta." },
     { code: "X1", title: "Formulario de requerimientos sin backend", status: "critico", category: "Conversión", note: "Debe enviar email o guardar en base para uso real con clientes." },
+  ],
+  DRV: [
+    { code: "M1", title: "Ficha 12D base creada", status: "aplicado", category: "Marca", note: "Existe una ficha editable para empezar a trabajar sin esperar el import." },
+    { code: "M2", title: "Datos factuales pendientes", status: "critico", category: "Marca", note: "Razón social, contacto, cobertura, precios, catálogo y condiciones deben venir del cliente o Supabase Driven." },
+    { code: "C1", title: "Primeras ideas creadas", status: "aplicado", category: "Contenido", note: "Producto héroe, objeción de compra y B2B mayorista." },
+    { code: "P1", title: "Falta catálogo real", status: "critico", category: "Performance", note: "Sin productos reales no se puede medir conversión ni publicar campañas reales." },
+    { code: "X1", title: "Requerimientos activos", status: "pendiente", category: "Conversión", note: "El tablero ya muestra qué falta pedir para completar la marca." },
   ],
 };
 
