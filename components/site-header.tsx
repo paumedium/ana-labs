@@ -21,6 +21,7 @@ const marcaSections = [
   { label: "Restricciones", path: "restricciones" },
   { label: "Tipografía", path: "tipografia" },
   { label: "Assets visuales", path: "assets" },
+  { label: "Catálogo Driven", path: "catalogo" },
 ] as const;
 
 export function SiteHeader({ brand, activeTab }: Props) {

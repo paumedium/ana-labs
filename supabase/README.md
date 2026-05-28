@@ -14,4 +14,13 @@
      - `http://localhost:3000/auth/confirm`
 7. Confirmar que el usuario pueda entrar a `/login` y ver VPM + DRV.
 
+Catálogo externo Driven:
+
+- La app principal sigue usando el Supabase de Ana Labs para auth, marcas, fichas, piezas y requerimientos.
+- El stock real de Driven se lee como fuente secundaria de solo lectura desde `stock_enriquecido`.
+- Variables necesarias en local/Vercel:
+  - `DRIVEN_SUPABASE_URL`
+  - `DRIVEN_SUPABASE_PUBLISHABLE_KEY`
+- La vista queda en `/marcas/DRV/catalogo`.
+
 No pegar en el chat ni commitear `service_role`, password de DB, JWT secret ni connection strings con password.
