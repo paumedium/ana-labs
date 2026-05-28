@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
-import { signIn, signUp } from "./actions";
+import { sendMagicLink, signIn, signUp } from "./actions";
 
 type LoginSearchParams = Promise<{ error?: string | string[]; message?: string | string[] }>;
 
@@ -27,7 +27,7 @@ export default async function LoginPage({ searchParams }: { searchParams: LoginS
         <p className="text-sm text-muted mb-10">
           Plataforma exclusiva para clientes Ana Labs.
           <br />
-          Ingresá con tu correo y contraseña de acceso.
+          Entrá con contraseña o recibí un link por email.
         </p>
 
         {error && <div className="mb-5 border border-[var(--red)] bg-[#fff6f4] p-3 text-left text-sm text-[var(--red)]">{error}</div>}
@@ -49,7 +49,7 @@ export default async function LoginPage({ searchParams }: { searchParams: LoginS
           </div>
           <div className="text-left">
             <label htmlFor="password" className="eyebrow block mb-2">
-              Contraseña
+              Contraseña <span className="normal-case tracking-normal text-muted">(solo si ya tenés una)</span>
             </label>
             <input
               id="password"
@@ -57,7 +57,6 @@ export default async function LoginPage({ searchParams }: { searchParams: LoginS
               type="password"
               placeholder="••••••••"
               className="w-full px-4 py-3 border border-line rounded bg-paper-soft text-ink placeholder:text-muted/50 focus:outline-none focus:border-ink"
-              required
               minLength={6}
             />
           </div>
@@ -74,6 +73,13 @@ export default async function LoginPage({ searchParams }: { searchParams: LoginS
             className="w-full py-3 border border-line rounded mono text-xs tracking-[0.12em] uppercase text-muted hover:border-ink hover:text-ink transition"
           >
             Crear acceso
+          </button>
+          <button
+            type="submit"
+            formAction={sendMagicLink}
+            className="w-full py-3 border border-line rounded mono text-xs tracking-[0.12em] uppercase text-muted hover:border-ink hover:text-ink transition"
+          >
+            Enviar link de acceso
           </button>
         </form>
 
