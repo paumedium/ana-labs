@@ -15,6 +15,14 @@ const tabGroups = [
   { id: "requerimientos", label: "Requerimientos", path: "requerimientos" },
 ] as const;
 
+const marcaSections = [
+  { label: "Ficha de marca", path: "marca" },
+  { label: "Identidad visual", path: "identidad-visual" },
+  { label: "Restricciones", path: "restricciones" },
+  { label: "Tipografía", path: "tipografia" },
+  { label: "Assets visuales", path: "assets" },
+] as const;
+
 export function SiteHeader({ brand, activeTab }: Props) {
   return (
     <header className="border-b border-line bg-paper">
@@ -54,6 +62,33 @@ export function SiteHeader({ brand, activeTab }: Props) {
           <nav className="hidden items-center border border-line lg:flex">
             {tabGroups.map((tab) => {
               const active = activeTab === tab.id;
+              if (tab.id === "marca") {
+                return (
+                  <div key={tab.id} className="group relative">
+                    <Link
+                      href={`/marcas/${brand.code}/${tab.path}`}
+                      className={`mono flex min-w-36 items-center justify-center gap-2 px-5 py-3 text-center text-[10px] uppercase transition ${
+                        active ? "bg-paper-soft text-ink shadow-[inset_0_-2px_0_var(--ink)]" : "text-muted hover:bg-paper-soft hover:text-ink"
+                      }`}
+                    >
+                      <span>{tab.label}</span>
+                      <span className="text-[9px]">▾</span>
+                    </Link>
+                    <div className="absolute right-0 top-full z-20 hidden w-56 border border-line bg-paper shadow-[0_18px_35px_rgba(15,20,25,0.08)] group-hover:block group-focus-within:block">
+                      {marcaSections.map((section) => (
+                        <Link
+                          key={section.path}
+                          href={`/marcas/${brand.code}/${section.path}`}
+                          className="mono block border-b border-line px-4 py-3 text-[10px] uppercase text-muted last:border-b-0 hover:bg-paper-soft hover:text-ink"
+                        >
+                          {section.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <Link
                   key={tab.id}
