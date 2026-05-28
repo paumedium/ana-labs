@@ -63,7 +63,7 @@ export default async function AnalisisPage({ params }: { params: Promise<{ code:
               Para que esto sea usable con clientes, el bloqueo no es visual: falta conectar requerimientos y publicaciones a datos reales.
             </div>
             <div className="mb-6 border-l-4 border-[var(--amber)] bg-[#fffaf0] p-4 text-sm">
-              Pedro y Mateo ya tiene una ficha fuerte. El próximo salto de calidad son assets reales: fotos, logo, medallas y puntos de venta.
+              {brand.name} ya tiene una ficha inicial. El próximo salto de calidad son datos reales: catálogo, assets, precios, canales y reglas comerciales.
             </div>
 
             <div className="border border-line">

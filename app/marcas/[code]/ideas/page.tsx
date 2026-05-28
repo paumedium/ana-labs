@@ -25,7 +25,7 @@ export default async function IdeasPage({ params }: { params: Promise<{ code: st
             <div className="eyebrow mb-2">Ideas · Cover</div>
             <h1 className="text-4xl font-semibold">IDEAS</h1>
             <p className="mt-3 max-w-4xl text-sm text-ink-soft">
-              Lote inicial para Pedro y Mateo: piezas de alto impacto visual ancladas en la ficha de marca.
+              Lote inicial para {brand.name}: piezas de alto impacto visual ancladas en la ficha de marca.
               Cada idea deja claro qué gatillador usa, qué frase podría salir y qué dimensión sostiene la propuesta.
             </p>
           </div>
